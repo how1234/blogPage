@@ -4,7 +4,7 @@ This page is the page I use as my technical blog.
 
 
 ### JavaScript
-[Prototype Chain](https://github.com/how1234/blogPage/edit/master/README.md)
+[Prototype Chain](https://github.com/how1234/blog/blob/master/prototype_chain/prototype_chain.md)
 
 
 
