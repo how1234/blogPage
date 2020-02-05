@@ -12,7 +12,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 Syntax highlighted code block
 
 # JavaScript
-##[Prototype Chain](https://jekyllrb.com/)
+[Prototype Chain](https://github.com/how1234/blogPage/edit/master/README.md)
 
 
 - Bulleted
