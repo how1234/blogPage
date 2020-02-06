@@ -1,13 +1,20 @@
+* [What's Sass](#-what's-sass)
+* [Compilation](#-sass-compilation)
+* [SCSS Sytax](#-scss-sytax)
+* [Numeric Operation](#-numeric-operation)
+* [Flow Control](#-flow-control)
+
+
 # What's Sass
 
 Sass(SCSS) is a CSS preprocessor, which is a scripting language that extends CSS by allowing developers to write code in one language and then compile it into CSS. Sass(SCSS) is perhaps the most popular preprocessor around right now.
 
 ## What's difference between SASS and SCSS
 
-###Suffix
+### Suffix
 The Sass file end in *.sass* suffix, and SCSS file end in *.scss* suffix.
 
-###Syntax Rule 
+### Syntax Rule 
 There has no brackets and semicolons in Sass, which is different from the original CSS. Sass has a more strict requirement for intention since it doesn't have brackets and semicolons. However, SCSS has a similar rule as CSS. 
 
 **Sass** 
@@ -34,10 +41,10 @@ body {
 
 ```
 For convenience, we decide to use SCSS syntax in the following contents.
-#Compilation
+# Sass Compilation
 We need to compile an SCSS file to a CSS file. 
-##Command compilation
-###Single file compile command
+## Command compilation
+### Single file compile command
 
 ```terminal
     sass <input path>/style.scss:<output path>/style.css
@@ -50,7 +57,7 @@ We need to compile an SCSS file to a CSS file.
 ```
 This command means compile all *.sass*(or *.scss*) files under *sass* directory to *.css* file,and put all these files in *css* directory.
 
-###Watch flag
+### Watch flag
 You can also watch individual files or directories with the --watch flag. The watch flag tells Sass to watch your source files for changes and re-compile CSS each time you save your Sass. If you wanted to watch (instead of manually build) your *input.scss* file, you'd just add the watch flag to your command. 
 The above commands now can be the following commands: 
 
@@ -59,7 +66,7 @@ The above commands now can be the following commands:
     sass --watch sass/:css/
 ```
 
-###Output style
+### Output style
 There have four different output styles of SCSS, which directly affect the style of output CSS files:
 
 * Nested 
@@ -73,24 +80,24 @@ There have four different output styles of SCSS, which directly affect the style
 We won't cover the details of the difference between these four styles.
 
 
-##Automated compilation
+## Automated compilation
 There are some tools like **Grunt** and **Gulp** we can use to compile SCSS, but we won't cover it in this article.
 
-##Common error
+## Common error
 ### Encoding error
 In the processing of compiling SCSS file, it does not support the **GBK** encoding, so the file encoding should be set as **utf-8** 
 
 
-#SCSS Sytax
-##Variable
-###Variable definition
+# SCSS Sytax
+## Variable
+### Variable definition
 ```scss
-    $backgroundWidth: 200px;
+$backgroundWidth: 200px;
 ```
-###Default Variable 
+### Default Variable 
 ```scss
-    $backgroundWidth: 200px;
-    $backgroundWidth: 150px !default;
+$backgroundWidth: 200px;
+$backgroundWidth: 150px !default;
 ```
 From the sass documentation:
 
@@ -98,34 +105,34 @@ From the sass documentation:
 
 So the value of the variable *backgroundWidth* in the above code will be 200px.
 
-###Calling variable
+### Calling variable
 
 ```scss
-    $width: 200px;
-    .box {
-        width: $width;
-    }
-```
-
-###Global variable and local variable
-```scss
-    $color:orange !default; //global variable
-    .block {
-      color: $color;
-    }
-    em {
-      $color: red; //local variable
-      a {
-        color: $color;
-      }
+$width: 200px;
+.box {
+    width: $width;
 }
 ```
 
-###Selector nesting
+### Global variable and local variable
+```scss
+$color:orange !default; //global variable
+.block {
+  color: $color;
+}
+em {
+  $color: red; //local variable
+  a {
+    color: $color;
+  }
+}
+```
+
+### Selector nesting
 
 Now we have the following CSS rules.
 
-```
+```css
 nav a {
     color:red;
 }
@@ -138,7 +145,7 @@ header nav a {
 
 And we can apply selector nesting in SCSS:
 
-```
+```scss
 nav {
   a {
     color: red;
@@ -152,11 +159,11 @@ nav {
 The **&** character in Scss is unique in that it represents the current selector.
 
 
-###Property nesting
+### Property nesting
 
 Now we have the following CSS rules:
 
-```
+```css
 .box {
     border-top: 1px solid red;
     border-bottom: 1px solid green;
@@ -165,7 +172,7 @@ Now we have the following CSS rules:
 ```
 And we can apply property nesting in SCSS:
 
-```
+```scss
 .box {
   border: {
    top: 1px solid red;
@@ -175,10 +182,10 @@ And we can apply property nesting in SCSS:
 ```
 
 
-###Pseudo-class
+### Pseudo-class
 Now we have following CSS rules:
 
-```
+```css
 clearfix:before, .clearfix:after {
   content: "";
   display: table;
@@ -192,7 +199,7 @@ clearfix:before, .clearfix:after {
 
 And we can apply pseudo-class nesting in SCSS:
 
-```
+```scss
 .clearfix{
 &:before,
 &:after {
@@ -207,7 +214,7 @@ And we can apply pseudo-class nesting in SCSS:
 ```
 
 
-###@mixin
+### @mixin
 
 According to the [Sass document](https://sass-lang.com/documentation/at-rules/mixin)
 
@@ -215,7 +222,7 @@ According to the [Sass document](https://sass-lang.com/documentation/at-rules/mi
 
 So we can define a *mixin* in SCSS:
 
-```
+```scss
     @mixin border-radius {
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -240,7 +247,7 @@ So we can define a *mixin* in SCSS:
 
 Then we can call this *mixin* by using **@include**
 
-```
+```scss
     @mixin border-radius{
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -256,7 +263,7 @@ But it has limitations; it can generate redundant CSS rules.
 
 For example, there is a piece of SCSS:
 
-```
+```scss
 @mixin border-radius{
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -293,7 +300,7 @@ We can see it has repeated rules.
 
 ### Extend
 
-```
+```scss
 //SCSS
 .btn {
   border: 1px solid #ccc;
@@ -312,7 +319,10 @@ We can see it has repeated rules.
   color: #fff;
   @extend .btn;
 }
+```
 
+
+```css
 //CSS
 .btn, .btn-primary, .btn-second {
   border: 1px solid #ccc;
@@ -332,12 +342,12 @@ We can see it has repeated rules.
 
 ```
 
-
-###Placeholder
+ 
+### Placeholder
 
  **%** is a placeholder symbol, and if this piece of code is not be called by **@extend**. Otherwise, the compiled code can merge the same code.
  
- ```
+```scss
  //SCSS
 %mt5 {
   margin-top: 5px;
@@ -358,7 +368,8 @@ We can see it has repeated rules.
     @extend %pt5;
   }
 }
-
+```
+```css
 //CSS
 .btn, .block {
   margin-top: 5px;
@@ -371,10 +382,10 @@ We can see it has repeated rules.
  
  
  
-###Interpolation
+### Interpolation
  
  
- ```
+ ```scss
      @mixin corner-icon($name, $top-or-bottom, $left-or-right) {
   .icon-#{$name} {
     background-image: url("/icons/#{$name}.svg");
@@ -388,12 +399,12 @@ We can see it has repeated rules.
  
  ```
 
-###Comment
+### Comment
 
 * Using '/\*' start. and end in "\*/"
 * Start with "//"
 
-```
+``` scss
 //Comments
 
 %mt5 {
@@ -407,13 +418,13 @@ We can see it has repeated rules.
 }
 ```
 
-##Operation
+## Numeric Operation
 
 ###Addition
 
 We can do the property addition, but it should be in the same unit.
 
-```
+```scss
 //SCSS
 .box {
   width: 20px + 8in;
@@ -426,7 +437,7 @@ We can do the property addition, but it should be in the same unit.
 ```
 Otherwise, the compiler will pop up an error.
 
-```
+```scss
 .box {
   width: 20px + 1em; //Incompatible units: 'em' and ‘px'.
 }
@@ -436,7 +447,7 @@ Otherwise, the compiler will pop up an error.
 ###Substraction
 The rule is as same as in addition.
 
-```
+```scss
 //SCSS
 
 $full-width: 960px;
@@ -445,7 +456,9 @@ $sidebar-width: 200px;
 .content {
   width: $full-width -  $sidebar-width;
 }
+```
 
+```css
 //CSS
 $full-width: 960px;
 
@@ -459,7 +472,7 @@ $full-width: 960px;
 
 Just look the code pieces:
 
-```
+```scss
 
 //SCSS
 .box {
@@ -473,7 +486,9 @@ Just look the code pieces:
 .box {
   width: 20px * 2em; //error: 40em*px isn't a valid CSS value.
 }
+```
 
+```css
 //CSS
 
 .box {
@@ -491,7 +506,7 @@ Since **"/"** is a valid symbol in CSS, so we can't directly use **"/"** in SCSS
 * If the expression only contains values, we should wrap it in parentheses.
 * If the expression contains other numeric operations.
 
-```
+```scss
 p {
   font: 10px/8px;             
   // Pure CSS, so it isn't division
@@ -513,13 +528,14 @@ p {
 
 The operation priority is the same as we do in our life.
 
-```
+```scss
 //SCSS
 
 .box {
   width: ((220px + 720px) - 11 * 20 ) / 12 ;  
 }
-
+```
+```css
 //CSS
 .box {
   width: 60px;
@@ -528,7 +544,7 @@ The operation priority is the same as we do in our life.
 
 ###Color numberic operation
 
-```
+```scss
 //SCSS
 
 p {
@@ -538,7 +554,8 @@ p {
 p {
   color: #010203 * 2; //Multiplication
 }
-
+```
+```css
 //CSS
 p {
   color: #050709; //Addition
@@ -574,7 +591,8 @@ p:before {
   content: "Foo " + Bar;
   font-family: sans- + "serif";
 }
-
+```
+```css
 //CSS
 
 1.
@@ -595,3 +613,161 @@ p:before {
 
 
 The quotes' existence in the compiled CSS depends on the string in the most left of the expression. "Foo" has quotes, so "Foo Bar" has quotes, and **sans-** has no quotes, so the **sans-serif** won't get wrapped. 
+
+
+# Flow control
+## @if
+
+**@if** rule is a SassScript, it will return a CSS rule based on its condition. Moreover, we can use it with **@else if** and **@else**.
+
+```scss
+@mixin blockOrHidden($boolean:true) {
+  @if $boolean {
+      @debug "$boolean is #{$boolean}";
+      display: block;
+    }
+  @else {
+      @debug "$boolean is #{$boolean}";
+      display: none;
+    }
+}
+
+.block {
+  @include blockOrHidden;
+}
+
+.hidden{
+  @include blockOrHidden(false);
+}
+
+```
+
+```css
+//Compiled CSS
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+```
+
+
+## @for
+
+There has two ways in using **@for**:
+
+```scss
+@for $i from <start> through <end>
+@for $i from <start> to <end>
+
+```
+
+* **start** stands for starting value
+* **end** stands ending value
+* **$i** stands for variable
+
+
+```SCSS
+//scss
+@for $i from 1 through 3 {
+  .item-#{$i} { width: 2em * $i; }
+}
+
+@for $i from 1 to 4 {
+  .item-#{$i} { width: 2em * $i; }
+}
+```
+
+```CSS
+//compiled
+.item-1 {
+  width: 2em;
+}
+
+.item-2 {
+  width: 4em;
+}
+
+.item-3 {
+  width: 6em;
+}
+```
+
+We can see the difference between keyword **through** and **to** is **through** include the ending value but **to** doesn't.
+
+## @while
+
+```scss
+$types: 4;
+$type-width: 20px;
+
+@while $types > 0 {
+    .while-#{$types} {
+        width: $type-width + $types;
+    }
+    $types: $types - 1;
+}
+
+```
+
+```css
+.while-4 {
+  width: 24px;
+}
+
+.while-3 {
+  width: 23px;
+}
+
+.while-2 {
+  width: 22px;
+}
+
+.while-1 {
+  width: 21px;
+}
+
+```
+
+## @Each
+
+**@Each** is iterating whole list.
+
+```scss
+@each $var in <list>
+
+
+$list: adam john wynn mason kuroir;//$list is a list
+
+@mixin author-images {
+    @each $author in $list {
+        .photo-#{$author} {
+            background: url("/images/#{$author}.png") no-repeat;
+        }
+    }
+}
+
+.author-bio {
+    @include author-images;
+}
+```
+
+```css
+//compiled css
+.author-bio .photo-adam {
+  background: url("/images/adam.png") no-repeat; }
+.author-bio .photo-john {
+  background: url("/images/john.png") no-repeat; }
+.author-bio .photo-wynn {
+  background: url("/images/wynn.png") no-repeat; }
+.author-bio .photo-mason {
+  background: url("/images/mason.png") no-repeat; }
+.author-bio .photo-kuroir {
+  background: url("/images/kuroir.png") no-repeat; }
+
+```
+
+
