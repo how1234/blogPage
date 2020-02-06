@@ -1,8 +1,8 @@
-* [What's Sass](#-what's-sass)
-* [Compilation](#-sass-compilation)
-* [SCSS Sytax](#-scss-sytax)
-* [Numeric Operation](#-numeric-operation)
-* [Flow Control](#-flow-control)
+* [What's Sass](#whats-sass)
+* [Compilation](#sass-compilation)
+* [SCSS Sytax](#scss-sytax)
+* [Numeric Operation](#numeric-operation)
+* [Flow Control](#flow-control)
 
 
 # What's Sass
