@@ -35,28 +35,28 @@ body {
 ```
 For convenience, we decide to use SCSS syntax in the following contents.
 #Compilation
-We need to compile SCSS file to CSS file. 
+We need to compile an SCSS file to a CSS file. 
 ##Command compilation
 ###Single file compile command
 
 ```terminal
-	sass <input path>/style.scss:<output path>/style.css
+    sass <input path>/style.scss:<output path>/style.css
 ```
 
-###Multiple file compiles command
+###Multiple files compiles command
 
 ```terminal
-	sass sass/:css/
+    sass sass/:css/
 ```
 This command means compile all *.sass*(or *.scss*) files under *sass* directory to *.css* file,and put all these files in *css* directory.
 
 ###Watch flag
-You can also watch individual files or directories with the --watch flag. The watch flag tells Sass to watch your source files for changes, and re-compile CSS each time you save your Sass. If you wanted to watch (instead of manually build) your *input.scss* file, you'd just add the watch flag to your command. 
+You can also watch individual files or directories with the --watch flag. The watch flag tells Sass to watch your source files for changes and re-compile CSS each time you save your Sass. If you wanted to watch (instead of manually build) your *input.scss* file, you'd just add the watch flag to your command. 
 The above commands now can be the following commands: 
 
 ```terminal
-	sass --watch <input path>/style.scss:<output path>/style.css
-	sass --watch sass/:css/
+    sass --watch <input path>/style.scss:<output path>/style.css
+    sass --watch sass/:css/
 ```
 
 ###Output style
@@ -68,7 +68,7 @@ There have four different output styles of SCSS, which directly affect the style
 * Compressed
 
 ```terminal
-	sass --watch test.scss:test.css --style nested/expanded/compact/compressed/
+    sass --watch test.scss:test.css --style nested/expanded/compact/compressed/
 ```
 We won't cover the details of the difference between these four styles.
 
@@ -85,12 +85,12 @@ In the processing of compiling SCSS file, it does not support the **GBK** encodi
 ##Variable
 ###Variable definition
 ```scss
-	$backgroundWidth: 200px;
+    $backgroundWidth: 200px;
 ```
 ###Default Variable 
 ```scss
-	$backgroundWidth: 200px;
-	$backgroundWidth: 150px !default;
+    $backgroundWidth: 200px;
+    $backgroundWidth: 150px !default;
 ```
 From the sass documentation:
 
@@ -101,38 +101,38 @@ So the value of the variable *backgroundWidth* in the above code will be 200px.
 ###Calling variable
 
 ```scss
-	$width: 200px;
-	.box {
-	    width: $width;
-	}
+    $width: 200px;
+    .box {
+        width: $width;
+    }
 ```
 
 ###Global variable and local variable
 ```scss
-	$color:orange !default; //global variable
-	.block {
-	  color: $color;
-	}
-	em {
-	  $color: red; //local variable
-	  a {
-	    color: $color;
-	  }
+    $color:orange !default; //global variable
+    .block {
+      color: $color;
+    }
+    em {
+      $color: red; //local variable
+      a {
+        color: $color;
+      }
 }
 ```
 
 ###Selector nesting
 
-Now we have following CSS rules
+Now we have the following CSS rules.
 
 ```
 nav a {
-	color:red;
+    color:red;
 }
 header nav a {
-	color:green;
+    color:green;
 }
-		
+        
 ```
 
 
@@ -149,19 +149,19 @@ nav {
 }
 ```
 
-The **&**c haracter in Scss is unique in that it represents the current selector.
+The **&** character in Scss is unique in that it represents the current selector.
 
 
 ###Property nesting
 
-Now we have following CSS rules:
+Now we have the following CSS rules:
 
 ```
 .box {
     border-top: 1px solid red;
     border-bottom: 1px solid green;
 }
-		
+        
 ```
 And we can apply property nesting in SCSS:
 
@@ -187,7 +187,7 @@ clearfix:before, .clearfix:after {
   clear: both;
   overflow: hidden;
 }
-		
+        
 ```
 
 And we can apply pseudo-class nesting in SCSS:
@@ -216,24 +216,24 @@ According to the [Sass document](https://sass-lang.com/documentation/at-rules/mi
 So we can define a *mixin* in SCSS:
 
 ```
-	@mixin border-radius {
+    @mixin border-radius {
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
-	//With parameter(its default value is 5px)
-	@mixin border-radius($radius:5px) {
+    //With parameter(its default value is 5px)
+    @mixin border-radius($radius:5px) {
     -webkit-border-radius: $radius;
     border-radius: $radius;
 }
 
-	//Complex mixin
-	
-	@mixin box-shadow($shadow...) {
-  	 @if length($shadow) >= 1 {
-    	@include prefixer(box-shadow, $shadow);
+    //Complex mixin
+    
+    @mixin box-shadow($shadow...) {
+       @if length($shadow) >= 1 {
+        @include prefixer(box-shadow, $shadow);
   } @else{
-	    $shadow:0 0 4px rgba(0,0,0,.3);
-	    @include prefixer(box-shadow, $shadow);
+        $shadow:0 0 4px rgba(0,0,0,.3);
+        @include prefixer(box-shadow, $shadow);
   }
 }
 ```
@@ -241,20 +241,20 @@ So we can define a *mixin* in SCSS:
 Then we can call this *mixin* by using **@include**
 
 ```
-	@mixin border-radius{
+    @mixin border-radius{
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
 
-	button {
-	    @include border-radius;
-	}
+    button {
+        @include border-radius;
+    }
 
 ```
 
-But it has limitations, it will generate redundant CSS rules.
+But it has limitations; it can generate redundant CSS rules.
 
-For example, there has a piece of SCSS:
+For example, there is a piece of SCSS:
 
 ```
 @mixin border-radius{
@@ -289,7 +289,7 @@ Then its the compiled CSS file:
 
 ```
 
-We can see it has a repeated rules.
+We can see it has repeated rules.
 
 ### Extend
 
@@ -335,7 +335,7 @@ We can see it has a repeated rules.
 
 ###Placeholder
 
- **%** is a placehoder sign, if this piece of code is not be called by **@extend**, otherwise the compiled code will merge the same code together.
+ **%** is a placeholder symbol, and if this piece of code is not be called by **@extend**. Otherwise, the compiled code can merge the same code.
  
  ```
  //SCSS
@@ -375,7 +375,7 @@ We can see it has a repeated rules.
  
  
  ```
- 	@mixin corner-icon($name, $top-or-bottom, $left-or-right) {
+     @mixin corner-icon($name, $top-or-bottom, $left-or-right) {
   .icon-#{$name} {
     background-image: url("/icons/#{$name}.svg");
     position: absolute;
@@ -406,3 +406,192 @@ We can see it has a repeated rules.
   @extend %mt5;
 }
 ```
+
+##Operation
+
+###Addition
+
+We can do the property addition, but it should be in the same unit.
+
+```
+//SCSS
+.box {
+  width: 20px + 8in;
+}
+//CSS
+.box {
+  width: 788px;
+}
+
+```
+Otherwise, the compiler will pop up an error.
+
+```
+.box {
+  width: 20px + 1em; //Incompatible units: 'em' and ‘px'.
+}
+
+```
+
+###Substraction
+The rule is as same as in addition.
+
+```
+//SCSS
+
+$full-width: 960px;
+$sidebar-width: 200px;
+
+.content {
+  width: $full-width -  $sidebar-width;
+}
+
+//CSS
+$full-width: 960px;
+
+.content {
+  width: $full-width -  1em;
+}
+
+```
+
+###Multiplication
+
+Just look the code pieces:
+
+```
+
+//SCSS
+.box {
+  width:10px * 2px; //compile error
+}
+
+.box {
+  width: 10px * 2; //compile success
+}
+
+.box {
+  width: 20px * 2em; //error: 40em*px isn't a valid CSS value.
+}
+
+//CSS
+
+.box {
+  width: 20px;
+}
+
+
+```
+
+###Division
+
+Since **"/"** is a valid symbol in CSS, so we can't directly use **"/"** in SCSS, so we need to use it in three ways:
+
+* If the expression contains a function or a variable, we can directly use it.
+* If the expression only contains values, we should wrap it in parentheses.
+* If the expression contains other numeric operations.
+
+```
+p {
+  font: 10px/8px;             
+  // Pure CSS, so it isn't division
+  
+  $width: 1000px;
+  width: $width/2;            
+  // It has Variable, so it's division
+  width: round(1.5)/2;        
+  // It has function，so it's division
+  height: (500px/2);          
+  // It has parentheses，so it's division
+  margin-left: 5px + 8px/2px;
+  // It contains other numberic operation(+), so it's division.
+}
+
+```
+
+###Operation priority
+
+The operation priority is the same as we do in our life.
+
+```
+//SCSS
+
+.box {
+  width: ((220px + 720px) - 11 * 20 ) / 12 ;  
+}
+
+//CSS
+.box {
+  width: 60px;
+}
+```
+
+###Color numberic operation
+
+```
+//SCSS
+
+p {
+  color: #010203 + #040506;  //Addition
+}
+
+p {
+  color: #010203 * 2; //Multiplication
+}
+
+//CSS
+p {
+  color: #050709; //Addition
+}
+
+p {
+  color: #020406; //Multiplication
+}
+
+```
+
+There have three color parts in the color value(red, green, and blue); the addition will add the values in these three parts, respectively. Therefore, the calculated value above is #05(01+04)07(02+05)09(03+06). Multiplication applies in the same rule.
+
+###String splice
+
+We can use **"+"** to splice to string directly. Whatever a string gets wrapped by a quote or not, and it can always be spliced with another string.
+
+```
+//SCSS
+1.
+$content: "Hello" + "" + "Sass!";
+.box:before {
+  content: " #{$content} ";
+}
+
+2.
+div {
+  cursor: e + -resize;
+}
+
+3.
+p:before {
+  content: "Foo " + Bar;
+  font-family: sans- + "serif";
+}
+
+//CSS
+
+1.
+.box:before {
+  content: " Hello Sass! ";
+}
+
+2.
+div {
+  cursor: e-resize;
+}
+
+3.
+p:before {
+  content: "Foo Bar";
+  font-family: sans-serif; }
+```
+
+
+The quotes' existence in the compiled CSS depends on the string in the most left of the expression. "Foo" has quotes, so "Foo Bar" has quotes, and **sans-** has no quotes, so the **sans-serif** won't get wrapped. 
