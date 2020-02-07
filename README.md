@@ -6,11 +6,11 @@ This page is the page I use as my technical blog.
 ### JavaScript
 [Prototype Chain](https://github.com/how1234/blog/blob/master/javascript/prototype_chain/prototype_chain.md)
 
-[Interview Questions](https://github.com/how1234/blog/blob/master/javascript/Interview_Questions.md)
+[Interview Questions](https://github.com/how1234/blog/blob/master/javascript/Interview%20Questions.md)
 
 
 ### CSS
-[SASS](https://github.com/how1234/blog/blob/master/What's%20Sass.md)
+[SASS](https://github.com/how1234/blog/blob/master/CSS/What's%20Sass.md)
 
 
 ### Support or Contact
