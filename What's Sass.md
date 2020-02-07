@@ -771,3 +771,57 @@ $list: adam john wynn mason kuroir;//$list is a list
 ```
 
 
+# Function
+Some useful built-in function
+
+### Unquote()
+
+```scss
+//SCSS
+.test1 {
+    content:  unquote('Hello Sass!') ;
+}
+.test2 {
+    content: unquote("'Hello Sass!");
+}
+.test3 {
+    content: unquote("I'm Web Designer");
+}
+.test4 {
+    content: unquote("'Hello Sass!'");
+}
+.test5 {
+    content: unquote('"Hello Sass!"');
+}
+.test6 {
+    content: unquote(Hello Sass);
+}
+```
+
+```css
+//CSS
+.test1 {
+  content: Hello Sass!; }
+
+.test2 {
+  content: 'Hello Sass!; }
+
+.test3 {
+  content: I'm Web Designer; }
+
+.test4 {
+  content: 'Hello Sass!'; }
+
+.test5 {
+  content: "Hello Sass!"; }
+
+.test6 {
+  content: Hello Sass; }
+
+```
+
+From the test cases, it can be seen that the unquote() only can remove the first and last quotes from the string.
+
+
+## quote()
+quote() has the oppsite function with unquote().
