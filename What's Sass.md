@@ -1,8 +1,8 @@
-* [What's Sass](#-what's-sass)
-* [Compilation](#-sass-compilation)
-* [SCSS Sytax](#-scss-sytax)
-* [Numeric Operation](#-numeric-operation)
-* [Flow Control](#-flow-control)
+* [What's Sass](#whats-sass)
+* [Compilation](#sass-compilation)
+* [SCSS Sytax](#scss-sytax)
+* [Numeric Operation](#numeric-operation)
+* [Flow Control](#flow-control)
 
 
 # What's Sass
@@ -420,7 +420,7 @@ We can see it has repeated rules.
 
 ## Numeric Operation
 
-###Addition
+### Addition
 
 We can do the property addition, but it should be in the same unit.
 
@@ -444,7 +444,7 @@ Otherwise, the compiler will pop up an error.
 
 ```
 
-###Substraction
+### Substraction
 The rule is as same as in addition.
 
 ```scss
@@ -468,7 +468,7 @@ $full-width: 960px;
 
 ```
 
-###Multiplication
+### Multiplication
 
 Just look the code pieces:
 
@@ -498,7 +498,7 @@ Just look the code pieces:
 
 ```
 
-###Division
+### Division
 
 Since **"/"** is a valid symbol in CSS, so we can't directly use **"/"** in SCSS, so we need to use it in three ways:
 
@@ -524,7 +524,7 @@ p {
 
 ```
 
-###Operation priority
+### Operation priority
 
 The operation priority is the same as we do in our life.
 
@@ -569,7 +569,7 @@ p {
 
 There have three color parts in the color value(red, green, and blue); the addition will add the values in these three parts, respectively. Therefore, the calculated value above is #05(01+04)07(02+05)09(03+06). Multiplication applies in the same rule.
 
-###String splice
+### String splice
 
 We can use **"+"** to splice to string directly. Whatever a string gets wrapped by a quote or not, and it can always be spliced with another string.
 
