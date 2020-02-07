@@ -21,6 +21,7 @@ The prototype is a  characteristic of JavaScript. Each function is created with 
 
 ```
 It is a widespread use way in Javascript; the methods and properties in the prototype are shared among all instances. 
+It's very similar to inheritance in a class based language.
 
 ## How prototypes work?
 On every prototypes, they all have a property called *constructor* that points back to the function. For example, *Person.prototype.constructor* points to *Person* function.
