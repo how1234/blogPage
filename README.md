@@ -4,8 +4,9 @@ This page is the page I use as my technical blog.
 
 
 ### JavaScript
-[Prototype Chain](https://github.com/how1234/blog/blob/master/prototype_chain/prototype_chain.md)
+[Prototype Chain](https://github.com/how1234/blog/blob/master/javascript/prototype_chain/prototype_chain.md)
 
+[Interview Questions](https://github.com/how1234/blog/blob/master/javascript/Interview_Questions.md)
 
 
 ### CSS
