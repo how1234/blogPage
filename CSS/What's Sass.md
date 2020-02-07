@@ -3,7 +3,8 @@
 * [SCSS Sytax](#scss-sytax)
 * [Numeric Operation](#numeric-operation)
 * [Flow Control](#flow-control)
-
+* [Numeric Function](#numeric-function)
+* [List Function](#list-function)
 
 # What's Sass
 
@@ -771,7 +772,7 @@ $list: adam john wynn mason kuroir;//$list is a list
 ```
 
 
-# Function
+# Numeric Function
 Some useful built-in function
 
 ### Unquote()
@@ -825,3 +826,483 @@ From the test cases, it can be seen that the unquote() only can remove the first
 
 ## quote()
 quote() has the oppsite function with unquote().
+
+```scss
+//SCSS
+.test1 {
+    content:  quote('Hello Sass!');
+}
+.test2 {
+    content: quote("Hello Sass!");
+}
+.test3 {
+    content: quote(ImWebDesigner);
+}
+.test4 {
+    content: quote(' ');
+}
+
+```
+
+```css
+//CSS
+.test1 {
+  content: "Hello Sass!";
+}
+.test2 {
+  content: "Hello Sass!";
+}
+.test3 {
+  content: "ImWebDesigner";
+}
+.test4 {
+  content: "";
+}
+
+```
+
+If there have single quote or blank inside the string, the string must get wrapped by quotes. Otherwise, the SCSS code will be compiled error.
+
+```scss
+.test1 {
+    content:  quote(Hello Sass);
+}
+//error
+error style.scss (Line 13: $string: ("Hello""Sass") is not a string for `quote')
+
+```
+
+## To-upper-case() and To-lower-case()
+```scss
+//SCSS
+.test {
+  text: to-upper-case(aaaaa);
+  text: to-upper-case(aA-aAAA-aaa);
+}
+.test1 {
+  text: to-lower-case(AAAAA);
+  text: to-lower-case(aA-aAAA-aaa);
+}
+
+```
+
+
+```css
+.test {
+  text: AAAAA;
+  text: AA-AAAA-AAA;
+}
+.test1 {
+  text: aaaaa;
+  text: aa-aaaa-aaa;
+}
+
+```
+
+
+## percentage()
+percentage() will transfer a number in percentage form.
+
+```scss
+.footer{
+    width : percentage(.2)
+}
+
+```
+```css
+.footer{
+    width : 20%
+}
+```
+
+It won't work if the transferred number with units.
+
+```scss
+percentage(2px / 10em)
+SyntaxError: $value: 0.2px/em is not a unitless number for `percentage'
+
+```
+
+## round()
+```scss
+round(12.3) //12
+
+round(12.5) // 13
+
+round(1.49999) //1
+
+round(2.0) //2
+
+round(20%) //20%
+
+round(2.2%) //2%
+
+round(3.9em) //4em
+
+round(2.3px) //2px
+
+round(2px / 3px) //1
+
+round(1px / 3px) //0
+
+round(3px / 2em) //2px/em
+
+
+```
+
+
+## ceil()
+Auto carry a number.
+
+```scss
+ceil(2.0) //2
+
+ceil(2.1) //3
+
+ceil(2.6) //3 
+
+ceil(2.3%) //3%
+
+ceil(2.3px) //3px
+
+ceil(2.5px) //3px
+
+ceil(2px / 3px) //1
+
+ceil(2% / 3px) //1%/px
+
+ceil(1em / 5px) //1em/px
+
+```
+
+## floor()
+Has opposite function with *ceil()*.
+```scss
+floor(2.1) //2
+
+floor(2.5) //2
+
+floor(3.5%) //3%
+
+floor(10.2px) //10px
+
+floor(10.8em) //10em
+
+floor(2px/10px) //0
+
+floor(3px/1em) //3px/em
+
+```
+
+## abs()
+Return absolute value of a number
+```scss
+abs(10) //10
+
+abs(-10) //10
+
+abs(-10px) //10px
+
+abs(-2em) //2em
+
+abs(-.5%) //0.5%
+
+abs(-1px/2px) //0.5
+```
+
+## min() and max()
+These two function will find a max/min value in the given parameters.
+
+```scss 
+min(1,2,1%,3,300%) //1%
+
+min(1px,2,3px) //1px
+
+min(1em,2em,6em) //1em
+
+max(1,5) //5
+
+max(1px,5px) //5px
+
+```
+
+However, they won't work if there has incompatible unit in the given parameters.
+
+```scss
+min(1px,1em) //SyntaxError: Incompatible units: 'em' and 'px'.
+
+max(1,3px,5%,6) //SyntaxError: Incompatible units: '%' and ‘px'.
+
+```
+
+## random()
+Get a random number
+
+```scss
+random() // 0.03886
+
+```
+
+# List Function
+
+## length()
+It will return the length of given list
+
+```scss
+length(10px) //1
+
+length(10px 20px (border 1px solid) 2em) //4
+
+length(border 1px solid) //3
+
+```
+
+
+There can't be comma between arguments. Otherwise compiler will pop up error.
+
+
+## nth()
+
+Return the nth parameter from parameters list (start with 1, not 0)
+
+```scss
+nth(10px 20px 30px,1) //10px
+nth((Helvetica,Arial,sans-serif),2) //Arial
+nth((1px solid red) border-top green,1) //(1px "solid" #ff0000)
+
+```
+
+## join()
+Join two list(only two) into one list.
+
+```scss
+ join( (list1), (list2),$delimiter) //syntax
+ 
+ join(blue,red,comma) //(#0000ff, #ff0000)
+ join(blue,red,space) //(#0000ff #ff0000)
+ join((blue green),(red,orange),comma) //(#0000ff, #008000, #ff0000, #ffa500)
+```
+
+## append()
+
+Append a elemnt into a list. 
+
+```scss
+append((list),element,$delimiter)
+
+append((blue green),red,space) //(#0000ff #008000 #ff0000)
+append((blue, green),red,comma) //(#0000ff, #008000, #ff0000)
+```
+
+## zip()
+Transfering the multiple list into a multidimensional list.
+
+```scss
+zip(1px 2px 3px,solid dashed dotted,green blue red)
+//((1px "solid" #008000), (2px "dashed" #0000ff), (3px "dotted" #ff0000))
+
+```
+
+However, the number of paramaters of each list must be the same.
+
+## index()
+
+Find the index of searched element(start with 1), if there is no searched element in the list, return false.
+
+```scss
+index(1px solid red, 1px) //1
+
+index(1px solid red, solid) //2
+
+index(1px solid red,dotted) //false
+
+```
+
+# Introspection function
+
+## -type-of()
+This functions will return the data type of given parameter.
+
+Four types:
+- number
+- string
+- bool
+- color
+
+```scss
+type-of(100) //'number'
+
+type-of('abcd') //'string'
+
+type-of(true) //'bool'
+
+type-of(#fff) //'color'
+
+type-off(blue) //'color'
+
+
+```
+
+
+## unit()
+
+Get the unit of given parameter.
+
+
+```scss
+unit(100)//""
+
+unit(100px)//"px"
+
+unit(20%)//"%"
+
+unit(1em) //"em"
+
+unit(10px * 3em) //"em*px"
+
+unit(10px / 3em) //"px/em"
+
+unit(10px * 2em / 3cm / 1rem) //"em/rem"
+
+unit(1px - 1rem)//
+SyntaxError: Incompatible units: 'rem' and 'px'.
+
+```
+
+
+## unitless()
+
+This function is used to determine if the given paramter has units.
+
+```scss
+unitless(100) //true
+
+unitless(100px) //false
+
+unitless(100em) //false
+false
+
+```
+
+## comparable()
+
+This function is used to determine if the given two parameters can do the addition or substraction calculation.
+
+```scss
+comparable(2px,1%) //false
+comparable(2px,1em) //false
+comparable(2cm,1mm) //true
+
+```
+
+
+## Miscellaneous function
+Miscellaneous function is very similar to conditional (ternary) operator in Javascript
+
+```scss
+if($condition,$if-true,$if-false) //syntax
+
+if(true,1px,2px) //1px
+
+if(false,1px,2px) //2px
+
+```
+
+
+# Map Functions
+
+Map in Sass is very like JSON format in JavaScript.
+
+
+```scss
+$map: (
+    $key1: value1,
+    $key2: value2,
+    $key3: value3
+)
+
+```
+
+
+## map-get()
+
+```scss
+//scss
+map-get($map,$key)//syntax
+
+$social-colors: (
+    dribble: #ea4c89,
+    facebook: #3b5998,
+    github: #171515,
+    google: #db4437,
+    twitter: #55acee
+);
+.btn-dribble{
+  color: map-get($social-colors,facebook);
+}
+	
+```
+
+```css
+//css
+.btn-dribble {
+  color: #3b5998;
+}
+```
+
+What if there has no such key in the map?
+
+```scss
+//scss
+.btn-weibo{
+  font-size: 12px;
+  color: map-get($social-colors,weibo);
+}
+
+```
+
+```css
+.btn-weibo {
+  font-size: 12px;
+}
+
+```
+
+
+## map-has-key()
+
+This function will determine if this key is in the map, then return a boolean value.
+
+```scss
+map-has-key($map,$key) //syntax
+
+@if map-has-key($social-colors,facebook){
+    .btn-facebook {
+        color: map-get($social-colors,facebook);
+    }
+} @else {
+    @warn "No color found for faceboo in $social-colors map. Property ommitted."
+}
+
+```
+
+
+## map-keys()
+This function will return a keys list of the given map.
+```scss
+$list: map-keys($maps);
+```
+
+
+## map-values()
+This function will return a keys values of the given map.
+```scss
+$list: map-values($maps);
+```
+
+## map-remove()
+
+This function will remove the given keys in the map.
+```scss
+map-remove($map,$key)
+```
