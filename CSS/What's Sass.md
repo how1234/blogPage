@@ -5,6 +5,8 @@
 * [Flow Control](#flow-control)
 * [Numeric Function](#numeric-function)
 * [List Function](#list-function)
+* [Color function](#color-function)
+* [At-Rule](#at-rule)
 
 # What's Sass
 
@@ -299,7 +301,7 @@ Then its the compiled CSS file:
 
 We can see it has repeated rules.
 
-### Extend
+### @Extend
 
 ```scss
 //SCSS
@@ -1305,4 +1307,228 @@ $list: map-values($maps);
 This function will remove the given keys in the map.
 ```scss
 map-remove($map,$key)
+```
+
+# Color function
+
+## RGBA()
+
+```scss
+//syntax
+rgba($red,$green,$blue,$alpha)
+rgba($color,$alpha) 
+
+//scss
+.rgba {
+  color: rgba(255, 51, 102, 0.5);
+  background: rgba(255, 165, 0, 0.5);
+  border-color: rgba(0, 128, 0, 0.5);
+}
+```
+
+```css
+.rgba {
+  color: rgba(255, 51, 102, 0.5);
+  background: rgba(255, 165, 0, 0.5);
+  border-color: rgba(0, 128, 0, 0.5);
+}
+```
+
+
+## Red()
+Get the red value in a given RGB value.
+
+```scss
+>> red(#f36)
+
+```
+
+
+
+## Mix()
+Mix two color's value in a given weight.
+
+```scss
+$color1: #a63;
+$color2: #fff;
+$bgColor1: #f36;
+$bgColor2: #e36;
+$borderColor1:#c36;
+$borderColor2:#b36;
+
+.mix {
+    background: mix($bgColor1,$bgColor2,.75);
+    color: mix($color1,$color2,.25);
+    border-color: mix($borderColor1,$bgColor2,.05);
+}
+
+```
+
+```scss
+.mix {
+    background: #ee3366;
+    color: #fefefe;
+    border-color: #ed33
+}
+```
+
+
+# At-rule
+
+## @import
+This symbol can import other files.
+
+```scss
+@import "foo.css";
+@import "foo" screen;
+@import "http://foo.com/bar";
+@import url(foo);
+
+```
+
+
+## @media
+
+This function is basically equal to **@media** in CSS.
+However, there are two extra situation.
+
+Firstly,it can corporate with interpolation as the follwing codes.
+
+```scss
+$media: screen;
+$feature: -webkit-min-device-pixel-ratio;
+$value: 1.5;
+
+@media #{$media} and ($feature: $value) {
+  .sidebar {
+    width: 500px;
+  }
+}
+
+```
+
+```css
+.sidebar {
+  width: 300px; }
+  @media screen and (orientation: landscape) {
+    .sidebar {
+      width: 500px; } }
+```
+
+Secondly, the **@media** can nest into another **@media**.
+
+```scss
+@media screen {
+  .sidebar {
+    @media (orientation: landscape) {
+      width: 500px;
+    }
+  }
+}
+```
+
+```css
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  .sidebar {
+    width: 500px; } }
+
+```
+
+
+## @at-root
+
+This symbol is used to let the rules defined in a selector emitted to the root of the document.
+
+
+```scss
+.a {
+  color: red;
+
+  .b {
+    color: orange;
+
+    .c {
+      color: yellow;
+
+      @at-root .d {
+        color: green;
+      }
+    }
+  }  
+}
+```
+
+```css
+.a {
+  color: red;
+}
+
+.a .b {
+  color: orange;
+}
+
+.a .b .c {
+  color: yellow;
+}
+
+.d {
+  color: green;
+}
+
+```
+
+## @debug
+This symbol is used to debug code.
+
+```scss
+@debug 10em + 12em;
+```
+
+After running the code above:
+
+```scss
+Line 1 DEBUG: 22em
+```
+
+
+## @warn
+
+The function of this symbol is very like the **error** in JavaScript.
+
+```scss
+@mixin adjust-location($x, $y) {
+  @if unitless($x) {
+    @warn "Assuming #{$x} to be in pixels";
+    $x: 1px * $x;
+  }
+  @if unitless($y) {
+    @warn "Assuming #{$y} to be in pixels";
+    $y: 1px * $y;
+  }
+  position: relative; left: $x; top: $y;
+}
+```
+In the above codes, if any of the given parameters don't have units, the terminal will popup the warning message.
+
+
+## @error
+The function of this symbol is very like the **error** in JavaScript.
+
+
+```scss
+@mixin error($x){
+  @if $x < 10 {
+    width: $x * 10px;
+  } @else if $x == 10 {
+    width: $x;
+  } @else {
+    @error "The value of #{$x} should be less or equal to 10";
+  }
+
+}
+
+.test {
+  @include error(15);
+}
+
 ```
