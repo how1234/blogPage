@@ -202,3 +202,102 @@ Two parts we need to clarify.
 The useEffect() will be triggered only after the second parameter changed. So [] means this function only be called only after the first render.(because [] never changed)
   
 
+## Context Hooks(useContext)
+
+There are several ways can apply context
+- Provider and Consumer
+- Static ContextType
+
+```javascript
+
+const CountContext = createContext()
+
+//1
+<CountContext.Consumer>
+	<Component/>
+</CountContext.Consumer>
+
+//2
+static contextType = CountContext;
+
+//3
+const count = useContext(CountContext)
+
+
+```
+
+
+## useMemo
+useEffect always run after rendering. useMemo( () => {},[]) is executing while rendering.The second parameter has the same effect as useEffect(). 
+
+``` react
+
+const double = useMemo( ()=> {
+	return count * 2
+},[count===3]);
+
+```
+
+The **double** only be reinitialized value when [count===3] changed.  So the double will be 6 and 8. 
+
+
+## useCallback
+
+if useMemo() return a function like code following ```const onClick = useMemo( () => fn, [])```
+
+It will equals to ```const onClick = useCallback(fn,[])```
+
+
+The goal of useMemo() and useCallback() is to optimize the
+performance.
+
+## Ref Cooks
+
+useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. 
+
+```javascript
+const fn = useRef(fn)
+
+useEffect( () => {
+	fn.current = setInterval( ()=> {
+		setCount(count => count+1)
+	},1000)
+},[])
+
+useEffect( () => {
+	if(count>=10){
+		clearInterval(it.current)
+	}
+})
+
+```
+
+## Customize Hooks
+
+```javascript
+function useCount(defaultValue){
+	const [count,setCount] = useState(defaultValue)
+	
+	//logic
+	
+	return [count,setCount]
+}
+
+```
+
+## Hooks Rules
+
+Refers to [React](https://ru.react.js.org/docs/hooks-rules.html)
+
+>Only Call Hooks at the Top Level
+>
+Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That’s what allows React to correctly preserve the state of Hooks between multiple useState and useEffect calls. (If you’re curious, we’ll explain this in depth below.)
+
+>Only Call Hooks from React Functions
+>
+>Don’t call Hooks from regular JavaScript functions. Instead, you can:
+
+>✅ Call Hooks from React function components.
+>
+>✅ Call Hooks from custom Hooks (we’ll learn about them on the next page).
+

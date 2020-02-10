@@ -324,8 +324,78 @@ let arrayIntegers3 = arrayIntegers.slice(4); //returns [5]
 
 ```
 
+## 9. What is AJAX
 
+AJAX = Asynchronous JavaScript And XML.
+
+>AJAX allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that it is possible to update parts of a web page, without reloading the whole page.
 	
+```javascript
+setTimeOut(callbackfunction,1000)
+```
+
+
+## 10.What is Promise
+
+A promise is an object that may produce a single value some time in the future with either a resolved value or a reason that it’s not resolved(for example, network error). It will be in one of the 3 possible states: fulfilled, rejected, or pending. The syntax of promise would be as below
+```javascript
+const promise = new Promise(function(resolve, reject) {
+})
+```
+
+Promise is used to avoid callback hell. The cause of callback hell is when people try to write JavaScript in a way where execution happens visually from top to bottom. 
+
+```javascript
+async1(function(){
+    async2(function(){
+        async3(function(){
+            async4(function(){
+                ....
+            });
+        });
+    });
+});
+
+```
+
+A standard Ajax example:
+
+```javascript
+function ajax(url){
+    const p = new Promise( (resolve,reject)=> {
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET','/data/test.json',true)
+        xhr.onreadystatechange = function (){
+            if(xhr.readyState === 4){
+                if(xhr.status === 200){
+                    resolve(
+                        JSON.parse(xhr.responseText)
+                    )
+                }else if(xhr.status === 404){
+                    reject(new Error('404 not found'))
+                }
+            }
+        }
+        xhr.send(null)
+    })
+    return p
+}
+
+
+const url = '/data/test.json'
+ajax(url).then( res => console.log(res) ).catch(err => console.log(err))
+
+```
+
+
+## 11. What are event bubbling capturing
+
+Event bubbling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
+
+
+Event Capturing: When an event happens on an element, it first runs the handlers on its ancestors, then on its parent, then all the way down on it.
+
+
 
 
 
