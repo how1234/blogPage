@@ -399,3 +399,16 @@ Event Capturing: When an event happens on an element, it first runs the handlers
 
 
 
+## 12. What is token
+
+## 13. How to generate Token and using it in project
+
+## 14. The difference between bubble sorting,quick sorting and divided sorting.
+
+## 15. How many ajax ways between server and client
+
+## 16. The difference between Vue and React
+
+## 17. Differences between HTTP and HTTPS 
+
+## 18. 
