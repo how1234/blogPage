@@ -411,4 +411,6 @@ Event Capturing: When an event happens on an element, it first runs the handlers
 
 ## 17. Differences between HTTP and HTTPS 
 
-## 18. 
+## 18. Explain relations between fetch() and XMLHTTPRequest
+
+## 19. How to check the language of current environment
