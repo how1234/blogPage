@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <!-- <script type="text/javascript" src="./single_thread.js"></script> -->
+  <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+  <script>
+    //Version 1
+    var wait = function() {
+      var task = function() {
+        console.log("success");
+      };
+      setTimeout(task, 1000);
+    };
+    wait();
+    
+    //version2
+    // function waitHandle() {
+    //   var d = $.Deferred();
+
+    //   var wait = function(dtd) {
+    //     var task = function() {
+    //       console.log("success");
+
+    //       d.resolve();
+
+    //       // d.reject()
+    //     };
+    //     setTimeout(task, 1000);
+    //     return d;
+    //   };
+    //   return wait(d);
+    // }
+
+    var w = waitHandle();
+    w.reject() // can work
+    w.then(
+      function() {
+        console.log("ok1");
+      },
+      function() {
+        console.log("fail1");
+      }
+    ).then(
+      function() {
+        console.log("ok2");
+      },
+      function() {
+        console.log("fail2");
+      }
+    );
+
+
+    //version 3
+    function waitHandleWithPromise() {
+      var d = $.Deferred();
+
+      var wait = function(dtd) {
+        var task = function() {
+          console.log("success");
+
+          d.resolve();
+
+          // d.reject()
+
+        };
+        setTimeout(task, 1000);
+        return d.promise();
+      };
+      return wait(d);
+    }
+
+    var wp= waitHandleWithPromise();
+    wp.reject() // can't work
+    $.when(wp).then(
+      function() {
+        console.log("ok1");
+      },
+      function() {
+        console.log("fail1");
+      }
+    ).then(
+      function() {
+        console.log("ok2");
+      },
+      function() {
+        console.log("fail2");
+      }
+    );
+    
+
+  </script>
+</html>

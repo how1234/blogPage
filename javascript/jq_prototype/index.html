@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery test</title>
+
+    <p>
+        jquery 1
+    </p>
+
+    <p>
+        jquery 2
+    </p>
+
+    <div id='div1'>
+
+    </div>
+</head>
+
+<body>
+    <!-- <script type="text/javascript" src="./jquery-3.4.1.min.js"></script> -->
+    <script type="text/javascript" src="./prototype_jquery.js"></script>
+    <script type="text/javascript">
+        var $p = $('p')
+        $p.css('color', 'red')
+        $p.getNodeName()
+
+        var $div = $('#div1')
+        $div.getNodeName()
+    </script>
+
+</body>
+
+</html>

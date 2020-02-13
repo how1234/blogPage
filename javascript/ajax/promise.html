@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Promise tese</title>
+  </head>
+  <body>
+    <script>
+      function loadImg(src) {
+        var promise = new Promise((resolve, reject) => {
+          var img = document.createElement("img");
+          //   throw new Error("A error");
+          img.onload = () => {
+            resolve(img);
+          };
+          img.onerror = () => {
+            reject("Error message");
+          };
+          img.src = src;
+        });
+
+        return promise;
+      }
+      var src =
+        "https://api.jquery.com/jquery-wp-content/themes/jquery/content/donate.png";
+
+      // var src =
+      // "https://api.jquery.com/jquery-wp-content/themes/jquery/content/donate11231.png"; //Wrong website
+      var result = loadImg(src);
+      result
+        .then(function(img) {
+          console.log(1, img.width);
+          return img;
+        })
+        .then(function(img) {
+          console.log(2, img.height);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      var src1 = "https://api.jquery.com/jquery-wp-content/themes/jquery/content/donate.png";
+      var result1 = loadImg(src1);
+      var src2 =
+        "https://jquery.com/jquery-wp-content/themes/jquery/content/books/jquery-succinctly.jpg";
+      var result2 = loadImg(src2);
+      result1
+        .then(function(img1) {
+          console.log("First image loaded", img1.width);
+          return result2; // must return
+        })
+        .then(function(img2) {
+          console.log("Second image loaded", img2.width);
+        })
+        .catch(function(ex) {
+          console.log(ex);
+        });
+
+
+
+
+        var src3 = "https://api.jquery.com/jquery-wp-content/themes/jquery/content/donate.png";
+        var result3 = loadImg(src3)
+        var src4 =  "https://jquery.com/jquery-wp-content/themes/jquery/content/books/jquery-succinctly.jpg";
+        var result4 = loadImg(src4)
+        Promise.all([result3, result4]).then(function (datas) {
+            console.log('all', datas[0])
+            console.log('all', datas[1])
+        })
+        Promise.race([result3, result4]).then(function (data) {
+            console.log('race', data)
+        })
+    </script>
+  </body>
+</html>
