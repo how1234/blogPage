@@ -401,7 +401,10 @@ Event Capturing: When an event happens on an element, it first runs the handlers
 
 ## 12. What is token
 
+Instead of 
+
 ## 13. How to generate Token and using it in project
+
 
 ## 14. The difference between bubble sorting,quick sorting and divided sorting.
 
@@ -414,3 +417,15 @@ Event Capturing: When an event happens on an element, it first runs the handlers
 ## 18. Explain relations between fetch() and XMLHTTPRequest
 
 ## 19. How to check the language of current environment
+
+
+## 20. Differences between Object and Map
+
+## 21. What's serviceworker
+
+## 22. Implement a trim() method
+
+## 23. Remove duplicated Item in an Array
+
+## 24. Implement a inheritance in different ways of ES5
+
