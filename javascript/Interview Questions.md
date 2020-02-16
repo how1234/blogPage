@@ -434,14 +434,91 @@ The time complexity of quick sorting is nlogn, space complexity is n(logn) and i
 
 ## 19. How to check the language of current environment
 
+window.navigator.language
 
 ## 20. Differences between Object and Map
 
-## 21. What's serviceworker
+A Map object can iterate its elements in insertion order - a for..of loop will return an array of [key, value] for each iteration.
+
+Objects are similar to Maps in that both let you set keys to values, retrieve those values, delete keys, and detect whether something is stored at a key. Because of this, Objects have been used as Maps historically; however, there are important differences between Objects and Maps that make using a Map better.
+
+An Object has a prototype, so there are default keys in the map. However, this can be bypassed using map = Object.create(null). The keys of an Object are Strings, where they can be any value for a Map. You can get the size of a Map easily while you have to manually keep track of size for an Object.
+
+Use maps over objects when keys are unknown until run time, and when all keys are the same type and all values are the same type.
+
+Use objects when there is logic that operates on individual elements.
+
+
+## 21. What's Service Worker
 
 ## 22. Implement a trim() method
 
 ## 23. Remove duplicated Item in an Array
 
+
 ## 24. Implement a inheritance in different ways of ES5
+
+
+
+## 25. How to prevent double when users submit the form.
+
+preventDefault() 
+
+## 26. eval() function
+
+eval
+
+## 27. What is CORS, and it's mechanism
+Cross-Origin Resource Sharing (CORS) is a W3C Working Draft that defines how the browser and server must communicate when accessing sources across origins. The basic idea behind CORS is to use custom HTTP headers to allow both the browser and the server to know enough about each other to determine if the request or response should succeed or fail.
+
+For a simple request, one that uses either GET or POST with no custom headers and whose body is text/plain, the request is sent with an extra header called **Origin**. The **Origin** header contains the origin(protocol,domain name,and port). Then the server will determine whether or not it should serve a response. An example of **Origin** headr might look like that:
+
+```
+Origin: http://www.google.com
+
+```
+
+Then if the server decides that the request should be allowed, it sends an **Access-Control-Allow-Origin** header back the same origin that was sent or "*" if it's a public resource. For example
+
+```
+Access-Control-Allow-Origin: http://www.google.com
+
+```
+
+
+If this header is missing, or the origins don’t match, then the browser disallows the request. If all is well, then the browser processes the request. Note that neither the requests nor the responses include cookie information.
+
+## 28. What's Preflighted Requests
+It is the request when you try to make a request with one of the advance options
+For client:
+- Origin — Same as in simple requests.
+- Access-Control-Request-Method — The method that the request wants to use.Access-Control
+- Request-Headers — (Optional) A comma-separated list of the custom headers being used.
+
+```
+Origin: http://www.nczonline.net
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: NCZ
+
+```
+For server:
+
+- Access-Control-Allow-Origin — Same as in simple requests.Access-Control-Allow-Methods — A comma-separated list of allowed methods.
+- Access-Control-Allow-Headers — A comma-separated list of headers that the server will allow.
+- Access-Control-Max-Age — The amount of time in seconds that this prefl ight request should be cached for.
+
+```
+Access-Control-Allow-Origin: http://www.nczonline.net
+Access-Control-Allow-Methods: POST
+GETAccess-Control-Allow-Headers: NCZ
+Access-Control-Max-Age: 1728000
+```
+
+Once a preflight request has been made, the result is cached for the period of time specified in the response; you’ll only incur the cost of an extra HTTP request the fi rst time a request of this type is made.
+
+## 29. What's others alternate Cross-domian techniques
+
+### Image Pings
+
+### JSONP
 
