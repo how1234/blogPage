@@ -3,4 +3,6 @@ function trim(str){
 }
 
 
+
+
 console.log(trim("  asd asd asd asd asd "))

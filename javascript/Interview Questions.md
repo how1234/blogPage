@@ -451,22 +451,79 @@ Use objects when there is logic that operates on individual elements.
 
 ## 21. What's Service Worker
 
+A service worker is an event-driven worker registered against an origin and a path. It uses the JS file to control the related web page in intercepting, modifying, and control resources requests. Moreover, it can also caching resources. In conclusion,using service worker can let you to control the performance of your webpage under specific situation. 
+
+
+The service worker is running under the **worker** context, so it can't access the DOM. 
+
 ## 22. Implement a trim() method
+
+```javascript
+function trim(str){
+    return str.replace(/^\s+|\s+$/g,"")
+}
+
+
+console.log(trim("  asd asd asd asd asd "))
+
+
+```
+
+
 
 ## 23. Remove duplicated Item in an Array
 
 
+```javascript
+function removeElement(arr){
+    return arr.filter( (element,index) =>  arr.indexOf(element) === index)
+}
+
+function removeElement1(arr){
+    return [...new Set(arr)]
+}
+
+
+```
+
 ## 24. Implement a inheritance in different ways of ES5
 
+```javascript
+
+function Parent(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  Parent.prototype.methodOne = function(x, y) {
+    this.x += x;
+    this.y += y;
+  }
+  
+
+  function Children(x, y, r) {
+    Parent.call(this, x, y);
+  
+    this.r = r;
+  }
+  
+  Children.prototype = Object.create(Parent.prototype);
+
+  Children.prototype.constructor = Children;
+  
 
 
-## 25. How to prevent double when users submit the form.
+```
 
-preventDefault() 
+## 25. How to prevent double submitting when users submit the form.
+
+When submit event fired, add a decision statement to determine if it's already implemented.
 
 ## 26. eval() function
 
-eval
+The eval() function evaluates or executes an argument.
+
+If the argument is an expression, eval() evaluates the expression. If the argument is one or more JavaScript statements, eval() executes the statements.
 
 ## 27. What is CORS, and it's mechanism
 Cross-Origin Resource Sharing (CORS) is a W3C Working Draft that defines how the browser and server must communicate when accessing sources across origins. The basic idea behind CORS is to use custom HTTP headers to allow both the browser and the server to know enough about each other to determine if the request or response should succeed or fail.
@@ -519,6 +576,39 @@ Once a preflight request has been made, the result is cached for the period of t
 ## 29. What's others alternate Cross-domian techniques
 
 ### Image Pings
+Image pings are simple,cross-domain, one way communication with the server. You can use **onload** and **onError** method to listen the reponse by server. However, it can't get any specific data back from an image ping.
 
 ### JSONP
+
+JSONP is a short for "JSON with padding" . The JSONP format is made up of two parts: the callback and the data. The callback is the function that should be called on the page when the response has been received. The data is simply the JSON data to pass to the function, which is also the response of server.
+
+
+For example, there are such code pieces in the page.
+
+```javascript
+function print(e){
+  console.log(e)
+}
+```
+
+And you can add such <scritp> tag into html to implement JSONP
+
+````html
+<script src="http://server.com/jsonp.php?callback=print" />
+````
+
+When the server detect the callback function, it will pass the executed parameter into this callback function, so the client can get console log the response data. It is a two-way communication between client and server.
+
+
+### Comet
+
+>Comet is a term coined by Alex Russell to describe a more advanced Ajax technique sometimes referred to as server push.
+
+Comet is described as the server pushing data to the page. This approach allows information to come into the page in a manner closer to real time, making it ideal for information such as sports scores or stock market prices.
+
+
+There are two popular ways of Comet, one is **polling** which contains long and short polling, and the other one is **HTTP Streaming**. In polling method, the browser sends a request to the server in regular intervals to see if there's any data.
+Moreover, the difference between long and short polling is the short polling will sends a response immediately regardless of the data availability, while long polling waits to send a response.
+
+Differs from polling technique, HTTP streaming uses a single HTTP connection for the entire lifetime of the page.The browser sends a request to the server and the server holds that connection open, periodically sending data through the connection to the server. 
 
