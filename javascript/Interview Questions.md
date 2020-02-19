@@ -1,4 +1,4 @@
-# Interview Questions
+# JavaScript Interview Questions
 
 
 ## 1. What are the possible ways to create objects in JavaScript
@@ -230,6 +230,34 @@ function fn1(){
 
 
 print(fn1) //100
+
+```
+
+It also a way to implement getter and setter.
+
+```javascript
+let obj = function(){
+	var i = 0; //if you remove this line, the getI() answer will be 10
+	return {
+		setI(p){
+			i=p;
+		},
+		getI(){
+			return i
+		}
+	}
+
+}
+
+
+let x = obj()
+
+x.setI(5)
+
+i = 10
+
+console.log(x.getI()); //5
+
 
 ```
 
@@ -611,4 +639,274 @@ There are two popular ways of Comet, one is **polling** which contains long and 
 Moreover, the difference between long and short polling is the short polling will sends a response immediately regardless of the data availability, while long polling waits to send a response.
 
 Differs from polling technique, HTTP streaming uses a single HTTP connection for the entire lifetime of the page.The browser sends a request to the server and the server holds that connection open, periodically sending data through the connection to the server. 
+
+## 30. Difference between **let**, **var**, and **const**
+
+
+1. "let" was introduced in ES6, but "var" is there in JS from the beginning
+2. "let" has block scope, but "var" has function scope.
+3. "var" get hoisted
+
+You only can assign value once when you **const**, but you can modify an already assigned object-type value.
+
+```javascript
+let x = function () {
+	if(true){
+		var v = 2
+		let i = 1
+		
+	}
+	
+	console.log(v) //2
+	console.log(i) //i is no defined
+}
+const c = [1,2]
+c = [1,2,3]
+console.log(c)//[1,2,3]
+
+
+``` 
+
+## 31. Difference between **===** and **==**
+
+They are both comparator symbol
+**==** only compares values
+**===** compares value and types
+
+## 32. Difference between **null** and **undefined**
+
+1. **typeof** undefined is undefined, **typeof** null is Object.
+
+## 33. What is arrow function
+
+Arrow functions do not bind their own this, instead, they inherit the one from the parent scope, which is called "lexical scoping". 
+
+```javascript
+
+const myObject = {
+    myArrowFunction: () => console.log(this),
+    myMethod: function () {
+       console.log(this) ;
+    }
+  };
+myObject.myMethod() // this === myObject
+myObject.myArrowFunction() // this === window
+
+
+
+
+```
+
+## 34. What's the difference between function declaration and function expression.
+
+```javascript 
+console.log(functionD()) //it works due to hoisting.
+console.log(functionE()) //it can't work
+
+function functionD(){
+
+}
+
+let functionE = function(){
+
+}
+
+
+```
+ 
+# React Interview Questions
+
+## 1. Licycle methods
+
+React(v16.4)
+
+Three phases
+### Render
+
+1. Constructor
+	- Set initial state
+	- this.state = {}
+2. static getDerivedStateFromProps
+   - Replacement for componentWillReceiveProps()
+   - Get derived state from props, when passed props change,
+   - Class static method, they don't want user to access **this** keyword directly inside the method, such as you can't use 
+   - return a new state or null
+3.  render()
+	- Mandoary
+	- Can't call setState(), otherwise it will goes into infinitely loop
+4. componentDidMount()
+	- Triggered when DOM is ready.
+	- Best place for making API calls
+	
+### re-render
+1. static getDerivedStateFromProps
+2. shouldComponentUpdate
+	- Determine if a component needs updated.
+3. render
+4. getSnapShotBeforeUpdate
+	- Replacement for componentWillUpdate()
+5. ComponentDidUpdate()
+	-  Triggered when DOM is updated.
+
+### Unmount
+1. componentWillUnmount()
+
+## How to prevent components from re-rendering
+
+- shouldComponentUpdate()
+- React.PureComponent
+- React.Memo
+
+Both PureComponent and Memo will do a shallow comparison of props and objects of props.
+
+
+
+## Error boundaries
+
+### ErrorBoundaries Component
+
+```
+	<ErrorBoundariesComponent>
+		<MyComp/>
+	<ErrorBoundariesComponent>
+```
+It has special lifecycle hooks,It should have one of following lifecycle to make it as 
+ErrorBoundaries Component:
+   
+- static getDerivedStateFromProps
+- componentDidCatch, it can has fallback component here.
+
+
+## What is HOC
+
+## Why we can't directly change the state
+The idea behind that is that in order to track changes in state and than re-render the component according to the changes, you have to use setState, because after setState, the render function is triggered.
+
+
+## Ways in conditionally render react
+
+```javascript
+
+if(flag){
+	return <TrueComponent/>
+}else{
+	return <FalseComponent/>
+}
+
+
+{ flag && <TrueComponent/>}
+
+{ flag ? (<TrueComponent/>) : (<FalseComponent/>)}
+
+
+```
+
+## What is Fragment and why we use it
+
+We can only render single child. Which means we should wrap different child nodes into under one node.
+
+```
+//won't work
+render(){
+	return (
+			<ChildA/>
+			<ChildB/>
+	)
+}
+
+//work
+render(){
+	return (
+		<React.Fragment>
+			<ChildA/>
+			<ChildB/>
+		<React.Fragment/>
+	)
+}
+```
+
+## Lazy Loading
+
+This code piece will load asychoronously
+
+```
+
+const LazyComp = React.lazy(() => {'./lazyComp'})
+
+<Suspense fallback={<div>Loading...</div>}>
+	<LazyComp/>
+
+<Suspense/>
+```
+
+
+## Virtual DOM
+
+
+
+## 2. What is React Hook
+
+
+
+> Hooks are functions that lets you "Hook into" React state and lifecycle features from function component.
+
+
+## 3. Why React Hook
+- Different ways of doing the same things
+- No more complex lifecycle methods
+
+## 4. Rules of React Hook
+
+- Only call Hooks at the top level
+- Don't call hooks inside loops, conditions, or nested functions.
+- Call Hooks from React Components or Custom Hooks.
+
+
+## 5. Map Lifecycle class 
+
+- Initial Render
+
+```javascript
+getDerivedStateFromProps
+
+useEffect( () => {},[prop1,prop2])
+
+componentDidMount
+
+useEffect( () => {},[])
+
+
+```
+- Updates 
+
+```javascript
+getDerivedStateFromProps
+
+useEffect( () => {},[prop1,prop2])
+
+shouldComponentUpdate
+
+useMemo()
+
+componentDidUpdate
+useEffect( ()=> {})
+
+getSnapshotBeforeUpdate()
+custom hook to hold previous state
+
+
+```
+- Unmount
+
+```javascript
+Unmount
+
+useEffect( () => {return ()=>cleanUpFunction() },[prop1,prop2])
+
+
+
+
+```
+
+
 
