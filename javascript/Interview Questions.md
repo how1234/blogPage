@@ -713,6 +713,23 @@ let functionE = function(){
 
 
 ```
+
+# Broswer
+
+## Caching
+
+## Redirection
+
+## status coding
+
+
+## Template engine
+
+## RPC, difference between Ajax
+
+Remote procedure call
+
+difference between 
  
 # React Interview Questions
 
@@ -738,7 +755,7 @@ Three phases
 	- Triggered when DOM is ready.
 	- Best place for making API calls
 	
-### re-render
+### Re-render
 1. static getDerivedStateFromProps
 2. shouldComponentUpdate
 	- Determine if a component needs updated.
@@ -773,7 +790,7 @@ Both PureComponent and Memo will do a shallow comparison of props and objects of
 It has special lifecycle hooks,It should have one of following lifecycle to make it as 
 ErrorBoundaries Component:
    
-- static getDerivedStateFromProps
+- static getDerivedStateFromError
 - componentDidCatch, it can has fallback component here.
 
 
@@ -838,6 +855,7 @@ const LazyComp = React.lazy(() => {'./lazyComp'})
 
 <Suspense/>
 ```
+
 
 
 ## Virtual DOM

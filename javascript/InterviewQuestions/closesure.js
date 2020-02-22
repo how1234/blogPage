@@ -1,24 +1,15 @@
-let obj = function(){
-	var i = 0;
-	return {
-		setI(p){
-			i=p;
-		},
-		getI(){
-          
-			return i
-		}
-	}
 
+function createCounter() {
+  var counter = 0
+  const myFunction = function() {
+    counter = counter + 1;
+    return counter;
+  };
+  return myFunction;
 }
-
-
-let x = obj()
-
-x.setI(5)
-
-i = 10
-
-console.log(x.getI()); //5
-
-
+const increment = createCounter();
+const c1 = increment();
+const c2 = increment();
+counter = 11
+const c3 = increment();
+console.log("example increment", c1, c2, c3);
