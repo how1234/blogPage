@@ -8,7 +8,7 @@
 * [Color function](#color-function)
 * [At-Rule](#at-rule)
 
-# What's Sass
+# What's Sass 
 
 Sass(SCSS) is a CSS preprocessor, which is a scripting language that extends CSS by allowing developers to write code in one language and then compile it into CSS. Sass(SCSS) is perhaps the most popular preprocessor around right now.
 
