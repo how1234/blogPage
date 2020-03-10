@@ -1,17 +1,18 @@
-// var child1 = Object.create(Object) //child1's prototype is Object
+var child1 = Object.create(Object) //child1's prototype is Object
 
-// var child2 = Object.create(child1) //child2's prototype is child1
-
-
-// console.log(child2.hasOwnProperty === Object.prototype.hasOwnProperty) // true
+var child2 = Object.create(child1) //child2's prototype is child1
 
 
+console.log(child2.hasOwnProperty === Object.prototype.hasOwnProperty) // true
 
-// var a = new Object()
-// console.log(a.__proto__ === Object.prototype) //true
 
-// var b = []
-// console.log(b.__proto__ === Array.prototype) //true
+
+var a = new Object()
+console.log(a.__proto__ === Object.prototype) //true
+
+
+var b = []
+console.log(b.__proto__ === Array.prototype) //true
 
 
 
