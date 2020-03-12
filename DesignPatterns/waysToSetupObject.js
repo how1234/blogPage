@@ -1,6 +1,6 @@
 //3 common ways to create a new object
 
-var obj1 = {}
+var obj1 = {} //Object literal
 var obj2 = Object.create(Object.prototype)
 var obj3 = new Object()
 
