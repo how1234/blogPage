@@ -43,10 +43,10 @@ let promise = new Promise((resolve, reject) => {
   resolve("Value!");
 });
 
-console.log(promise); //Promise { <rejected> 'Error!' }
+console.log(promise); //Promise { 'Value!' }
 
 promise.finally(
     console.log("done!") // done!
 ).then(function(value) {
-  console.log(value); //Error!
+  console.log(value); //Value
 });

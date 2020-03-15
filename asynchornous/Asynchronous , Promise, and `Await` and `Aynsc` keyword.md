@@ -227,4 +227,20 @@ get X get Y get Z //3s later
 
 ```
 
+## `Async` and `Await`
 
+`Async` and `Await` totally indeed change the way asynchrous in a synchrous way. 
+
+
+The way we use `Async` keyword is like
+
+```
+function hello() { return "Hello" };
+hello();
+
+async function hello() { return "Hello" };
+hello();
+
+```
+
+It looks the same,but the async function is actually returns a Promise
