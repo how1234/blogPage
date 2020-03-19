@@ -1,5 +1,9 @@
-var i = 10
-var number = i++;
+var arr = []
+arr["a"] = 1
 
-console.log(i)
-console.log(number)
+console.log(arr)
+
+
+for (var i = 0; i<arr.length;i++){
+    console.log(arr[i])
+}

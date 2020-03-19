@@ -15,3 +15,4 @@ foo = function(){
 function foo(){
     console.log(3)
 }
+
