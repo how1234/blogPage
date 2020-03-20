@@ -64,6 +64,33 @@ class Graph {
       color[u] = "black";
     }
   }
+
+  improvedBfs(v,callback){
+    let color = this.initializeColor();
+    let queue = [];
+    queue.push(v);
+
+    while (queue.length > 0) {
+      let u = queue.shift();
+      let neighbours = this.adjList[u];
+
+      color[u] = "grey";
+
+      for (let n of neighbours) {
+        if (color[n] === "white") {
+          color[n] = "grey";
+          queue.push(n);
+        }
+      }
+
+
+      if (callback) {
+        callback(u);
+      }
+      color[u] = "black";
+    }
+      
+  }
 }
 function printNode(value) {
   console.log("Visted vertex:" + value);
