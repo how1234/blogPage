@@ -1,0 +1,22 @@
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+
+    if(prices.length === 0) return 0
+    let minPrice = prices[0];
+    let dp = new Array(prices.length)
+    dp[0] = 0
+
+    
+    for (let i=1;i<prices.length;i++){
+      
+        dp[i] = Math.max(dp[i-1],prices[i]-minPrice)
+      
+        minPrice = Math.min(prices[i],minPrice)
+    }
+    return dp[dp.length-1]
+};
+
+console.log(maxProfit([7,1,5,3,6,4]))
