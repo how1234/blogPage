@@ -13,3 +13,4 @@ const c2 = increment();
 counter = 11
 const c3 = increment();
 console.log("example increment", c1, c2, c3);
+

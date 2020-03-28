@@ -16,6 +16,7 @@ var addTwoNumbers = function(l1, l2) {
     var tail = new ListNode(0)
     
     var dummy = tail
+
     
     while(l1 || l2 || sum){
         
