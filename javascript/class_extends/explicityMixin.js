@@ -1,3 +1,4 @@
+//Explicity mixin, it's very likely to 'extend' in JS
 function mixin(sourceObj,targetObj){
     for(var key in sourceObj){
         if(!(key in targetObj)){

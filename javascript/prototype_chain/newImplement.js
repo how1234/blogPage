@@ -22,4 +22,4 @@ function NEW(f) {
   var obj = NEW(Foo, 'bar');
   console.log(obj.prop);          // 'bar'
   console.log(obj.inherited);     // 'baz'
-  console.log(obj instanceof Foo) // true
+  console.log(obj instanceof Foo) // true   
