@@ -43,7 +43,6 @@ function solution1(n,m,arr){
         }
        
     }
-    
     return count
 }
 
