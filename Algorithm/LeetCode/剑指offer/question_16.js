@@ -24,7 +24,7 @@ var myPow = function(x, n) {
     }
     if(result === Infinity){ //边界值判断
         return 0.0
-    }
+    }x
     return result
   
 };
