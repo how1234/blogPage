@@ -4,7 +4,8 @@ async function async1() {
     console.log('async1 end');   //6
 }
 async function async2() {
-    console.log('async2'); //3
+    
+    console.log('async2') //3
 }
 console.log('script start'); //1
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div >
+        <section>
+            1234
+        </section>
+        <section>
+            <ul>
+                <li>
+                    3
+                </li>
+                <li>
+                    4
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+<script>
+    var rootDiv = document.getElementsByTagName('div')[0]
+
+    function iterateNodes(rootDiv){
+        for (let node of rootDiv.childNodes){
+            if(node.nodeType === 1){
+                console.log(node.nodeName)
+                console.log(node.innerHTML)
+                if(node.childNodes.length >1){
+                    for(let nodeOne of node.childNodes){
+                        iterateNodes(nodeOne)
+                    }
+                }   
+            }    
+    }
+    }
+    iterateNodes(rootDiv)
+  
+</script>
+</html>

@@ -1,11 +1,22 @@
-setTimeout(_ => console.log(4))
+function throlltle(fn,interval){
+    let canRun = true
 
-new Promise(resolve => {
-  resolve()
-  console.log(1)
-}).then(_ => {
-  console.log(3)
-})
+    return function(){
+        if(!canRun) return
+        canRun = false
+        setTimeout(()=>{
+            fn.apply(this,arguments)
+            canRun = true
+        },interval)
+    }
+}
 
-console.log(2)
-
+function debounce(fn,interval){
+    let timeout = null
+    return function(){
+        clearTimeout(timeout)
+        timeout = setTimeout( ()=>{
+            fn.apply(this,arguments)
+        },interval)
+    }
+}
