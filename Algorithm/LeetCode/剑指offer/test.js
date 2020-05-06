@@ -1,5 +1,5 @@
-let obj = { 'a':1,'b':2}
+let obj = new Map()
 
-for( let value in obj){
-    console.log(value)
-}
+obj.set("hello",2)
+
+console.log(obj["hello"])
