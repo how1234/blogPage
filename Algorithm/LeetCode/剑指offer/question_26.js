@@ -12,7 +12,10 @@
  */
 var isSubStructure = function(A, B) {
     if(!A || !B) return false
-
+    //判断B是否为A的子结构
+    //A节点是否和B是同一棵树
+    //A左子树是否和B是同一棵树
+    //A右子树是否和B是同一棵树
     return isSubTree(A,B) || isSubStructure(A.left,B) || isSubStructure(A.right,B)
 
     function isSubTree(nodeA,nodeB){

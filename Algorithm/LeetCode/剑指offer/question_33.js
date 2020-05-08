@@ -1,7 +1,9 @@
 /**
  * @param {number[]} postorder
  * @return {boolean}
+ * 判断后序遍历的合法性
  */
+
 var verifyPostorder = function(postorder) {
     //后序遍历，根节点永远在最后一位
     function helper(indexL,rootNodeIndex){

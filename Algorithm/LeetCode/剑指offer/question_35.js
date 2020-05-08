@@ -41,7 +41,7 @@ var copyRandomList = function(head) {
 
 /**
  * @param {Node} head
- * @return {Node}
+ * @return {Node}w
  * bfs
  */
 var copyRandomList = function(head) {

@@ -8,7 +8,7 @@
 
 /**
  * Encodes a tree to a single string.
- * 超时方法
+ * 超时方法(BFS)
  * @param {TreeNode} root
  * @return {string}
  */

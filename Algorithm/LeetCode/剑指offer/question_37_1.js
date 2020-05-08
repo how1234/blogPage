@@ -8,7 +8,7 @@
 
 /**
  * Encodes a tree to a single string.
- *
+ * （DFS）超时
  * @param {TreeNode} root
  * @return {string}
  */

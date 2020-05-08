@@ -13,7 +13,6 @@
 var getKthFromEnd = function(head, k) {
     if(!head) return 
 
-    let count = 0;
     let prevP = head;
     let laterP = head;
     

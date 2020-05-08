@@ -27,7 +27,6 @@ var serialize = function(root) {
     }
     
     dfsSerialize(root)
-    console.log(serializedList)
     return serializedList
 };
 
@@ -42,20 +41,20 @@ var deserialize = function(data) {
     
     let root = new TreeNode(data[0])
     let index = 0
-    function dfs(data){
+    function dfs(){
         if(data[index] == null){
             index += 1
             return null
         }
         let node = new TreeNode(data[index])
         index += 1
-        node.left = dfs(data)
-        node.right = dfs(data)
+        node.left = dfs()
+        node.right = dfs()
         return node
     }
    
 
-    return dfs(data)
+    return dfs()
 };
 
 /**
