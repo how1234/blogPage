@@ -8,6 +8,8 @@
 /**
  * @param {TreeNode} root
  * @return {number}
+ * 时间复杂度O(N)
+ * 空间复杂度O(N) 
  */
 var maxDepth = function(root) {
     if(!root) return 0
