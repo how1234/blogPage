@@ -5,6 +5,7 @@ var MaxQueue = function() {
 
 /**
  * @return {number}
+ * 
  */
 MaxQueue.prototype.max_value = function() {
     if(!this.queue.length){

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{message}}
+      <div v-bind:id="message"></div>
+      <todo-list>
+        <todo-item
+          v-for="item in classList"
+          data-test="dd"
+          :title="item.title"
+          :deleted="item.deleted"
+          @deleted="handleDelete"
+        >
+          <template v-slot:pre-icon="{value}">
+            <span >前置图标 {{value}}</span>
+          </template>
+
+          <template v-slot:suf-icon>
+            <span>后置图标</span>
+          </template>
+        </todo-item>
+      </todo-list>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component("todo-item", {
+        props: {
+          title: String,
+          deleted: {
+            type: Boolean,
+            default: false
+          }
+        },
+        data:function(){
+            return {
+                value: Math.random()
+            }
+        },
+        template: `
+        <li>
+          <slot name="pre-icon" :value="value"></slot>
+          <span v-if="!deleted"> {{title}}</span>
+          <span v-else style="text-decoration: line-through"
+            >{{title}}</span
+          >
+          <slot name="suf-icon" :value="value"></slot>
+          <button @click="handleClick" v-show="!deleted">delete</button>
+        </li>
+        `,
+
+        methods: {
+          handleClick() {
+            this.$emit("deleted", "hi");
+          }
+        }
+      });
+
+      Vue.component("todo-list", {
+        template: `<ul>
+            <slot></slot>
+      </ul>`,
+        data: function() {
+          return {};
+        }
+      });
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          message: "hello world",
+          classList: [
+            {
+              title: "课程1",
+              deleted: true
+            },
+            {
+              title: "课程2",
+              deleted: false
+            }
+          ]
+        },
+        methods: {
+          handleDelete(val) {
+            console.log(val);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

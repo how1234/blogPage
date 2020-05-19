@@ -20,7 +20,5 @@ console.log(instance1.getSuperValue())
 instance1.colors.push('black')
 
 
-
-
 var instance2 = new SubType()
 console.log(instance2.getSuperValue())

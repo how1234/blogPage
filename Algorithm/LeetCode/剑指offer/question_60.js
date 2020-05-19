@@ -1,6 +1,8 @@
 /**
  * @param {number} n
  * @return {number[]}
+ * 空间复杂度O(N2) 需要初始化一个二维数组数组
+ * 时间复杂度为O(CN2) 对二维数组里面的每一个数字都要进行一次常数级的遍历
  */
 var twoSum = function(n) {
 

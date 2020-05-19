@@ -68,12 +68,14 @@ var maxSlidingWindow = function(nums, k) {
     }
 
     function cleanDeque(index,k){
-        //如果双向队列的首部超出窗口，直接出队
+        //每次加入新元素之前要进行两个检查
+
+        //1.如果双向队列的首部超出窗口，直接出队
         if(dequeue.length && index >= k + dequeue[0]){  
             dequeue.shift()
         }
 
-        //如果添加进来的最后一个数大于双端队列的最后一个数，最后一个数出列
+        //2.如果添加进来的最后一个数大于双端队列的最后一个数，最后一个数出列
         while(dequeue.length && nums[index] > nums[dequeue[dequeue.length-1]]){
             dequeue.pop()
          }
