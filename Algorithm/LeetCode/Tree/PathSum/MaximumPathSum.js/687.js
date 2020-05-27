@@ -27,14 +27,14 @@ var longestUnivaluePath = function(root) {
             leftDepth = 0
         }
         if(root.right && root.right.val === root.val){
-            rightDepth +=1
+            rightDepth += 1
         }else{
             rightDepth = 0;
         }
         //更新路径
         res = Math.max(res,leftDepth+rightDepth)
         
-        //这里不加1是因为在leftDepth那里已经判断过了。
+        //返回包含最长同值路径的树（包括该点）。
         return Math.max(rightDepth,leftDepth)
     }
     helper(root)

@@ -35,7 +35,7 @@ var maxPathSum = function(root) {
         //比较最终的路径和
         res = Math.max(res,pathSum)
 
-        //返回自己包含子树的收益到上层
+        //返回自己包含单颗子树的最大收益到上层
         return root.val + Math.max(left,right)
     }
 
