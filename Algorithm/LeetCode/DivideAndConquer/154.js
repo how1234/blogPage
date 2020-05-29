@@ -16,12 +16,12 @@ var findMin = function(nums) {
     let left = 0, right = nums.length-1;
 
     //二分查找
-    while(left <= right){
+    while(left < right){
         let mid = (left+right) >> 1
         //如果是一个正常的升序队列，nums[mid] 应该小于 nums[right]
         if(nums[mid] > nums[right]){  //如果该点大于目前区间最右侧的点，证明该点之前为正常升序，乱序点出现在该点的右侧，所以增大left指针。
             left = mid + 1;
-        }else if(nums[mid] < nums[right]){ //如果该点小于目前区间最右侧的点，证明该点之后为正常升序，乱序点出现在该点的左侧，所以缩小right指针。
+        }else if(nums[mid] < nums[right]){ //如果该点小于目前区间最右侧的点，证明该点之后为正常升序，乱序点出现在该点的左侧或者它本身，所以right指针指向mid。
             right = mid
         }else{ 
             //如果该点等于最右侧的点，无法判断是否已经乱序，需要缩减区间来进行更进一步的对比。
