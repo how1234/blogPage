@@ -24,6 +24,7 @@ var kthSmallest = function(root, k) {
         temp++
         if(temp === k){
             res = root.val;
+            return
         }
         helper(root.right)
 
