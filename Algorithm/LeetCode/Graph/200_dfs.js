@@ -11,7 +11,7 @@ var numIslands = function(grid) {
     let rows = grid.length
     let cols = grid[0].length
    
-    function dfs(i,j){
+    function dfs(i,j){  
         
         //边界状况
         if(i < 0 || i > rows-1 || j < 0 || j> cols-1) return 
