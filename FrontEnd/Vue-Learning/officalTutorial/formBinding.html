@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue表单绑定</title>
+    <script src='./vue.js'></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="value">
+        <textarea v-model="value"></textarea>
+        <input type="checkbox" v-model="value">
+        <br>
+        <input type="radio" value="test" v-model="value">
+
+        <select v-model="value">
+            <option disabled>Please choose</option>
+            <option value="1"> A</option>
+            <option value="2"> B</option>
+            <option value="3"> C</option>
+        </select>
+        {{value}}
+        <!--lazy修饰符，失焦后再触发-->
+        <input type="text" v-model.lazy="value">
+        <!--将值尽量转化成number类型-->
+        <input type="text" v-model.number="value">
+
+        <!--trim-->
+        <input type="text" v-model.trim="value">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            value:"hi"
+        },
+        watch:{
+            value: function(){
+                console.log(typeof this.value)
+            }
+        }
+    })
+</script>
+</html>
