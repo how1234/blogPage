@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <title>Vue模版语法1</title>
+</head>
+<body>
+    <div id="app">
+        <!--插值表达式-->
+        {{content}}
+
+        <!--innertext = data.name-->
+        <div v-text="name + 'Lee'">
+        </div>
+
+        <!--innerHtml = data.name-->
+        <div v-html="name">
+
+    </div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:"<h1>Dell</h1>"
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='./vue.js'></script>
+    <title>计算属性，方法以及监听器</title>
+</head>
+<body>
+    <!--DOM中加逻辑不符合vue的设计原则，view和model分离-->
+    <div id="app">
+        {{fullName}}
+        <br>
+        {{age}}
+        <br>
+        {{getFullName()}}
+        <br>
+        {{watchedFullName}}
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            firstName:"Dell",
+            lastName:"Lee",
+            watchedFullName:"Dell Lee",
+            age:28
+        },
+        //监听属性改变，执行方法
+        watch:{
+            firstName:function(){
+                console.log("watched computed 1")
+                this.watchedFullName = this.firstName + " " + this.lastName
+            },
+            lastName:function(){
+                console.log("watched computed 2")
+                this.watchedFullName = this.firstName + " " + this.lastName
+            }
+        },
+        methods:{
+            //在方法里，改变不相关值，也会导致重新计算
+            getFullName:function(){
+                console.log("method computed")
+                return this.firstName + " " + this.lastName
+            }
+        },
+        //计算属性
+        //内置缓存，只有依赖的相关属性修改了，才会计算
+        computed:{
+            fullName:function(){
+                console.log("computed")
+                return this.firstName + " " + this.lastName
+            }
+        }
+    })
+
+</script>
+</html>

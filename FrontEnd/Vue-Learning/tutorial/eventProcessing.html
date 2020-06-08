@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的事件处理</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="handleClick($event,1,2)">Button</button>
+        <button @click="handleClick">Button</button>
+
+        <div>
+            <form action="/abc" @click="handleFormClick($event)">
+                <input type="submit">
+            </form>
+            
+            <form action="/abc" @click.prevent>
+                <input type="submit">
+            </form>
+        </div>
+
+        <!--self只有在e.target === e.currentTarget才会执行-->
+        <div @click.self="handleClick">
+            nice
+            <div>Hello world</div>
+
+        </div>
+
+    
+        <!--只会执行一次-->
+        <div @click.once="handleClick">
+                nice
+                <div>Hello world</div>
+    
+        </div>
+
+        <!--capture可以把事件触发改成捕获-->
+        <div @click.capture="handleClick">
+                nice
+                <div>Hello world</div>
+    
+        </div>
+        
+        <!--只有点击enter，还有.esc,.delete等才触发-->
+        <input type="text" @keydown.enter="handleKeyDown"/>
+
+         <!--必须按住control才会执行-->
+         <input type="text" @keydown.ctrl="handleKeyDown"/>
+
+         <!--鼠标修饰符，用右键去点才会触发-->
+         <div @click.right = 'handleClick'>handleClick right</div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:"#app",
+        methods:{
+            handleClick:function(e,one,two){
+                console.log(e)
+                console.log(one)
+                console.log(two)
+            },
+            handleFormClick:function(e){
+                e.preventDefault()
+            },
+            handleKeyDown:function(e){
+                console.log(e.target.value)
+            }
+        }
+    })
+</script>
+</html>

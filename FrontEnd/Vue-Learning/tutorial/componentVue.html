@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue component使用</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <table>
+            <tbody>
+                <!--tbody里面必须放tr，如果写自定义组件，会跳出-->
+                
+                <tr is="row"></tr>
+
+            </tbody>
+
+        </table>
+        <div ref="hello"
+        @click="handleClick">
+            hello world
+        </div>
+        <counter ref="counter1"@increase="handleChange">
+        </counter>
+
+        <counter ref="counter2" @increase="handleChange">
+        </counter>
+
+        <div>{{total}}</div>
+    </div>
+</body>
+
+<script>
+    //每一个子组件用自己的数据存储，每一个组件都是一个实例，data作为函数使得实例之间不互相影响
+    Vue.component('row',{
+        template:'<tr><td>This is a {{content}}</td></tr>',
+        data:function(){
+            return {
+                content:'this is a content'
+            }
+        }
+    })
+
+    Vue.component('counter',{
+        template:'<div @click="handleCounterClick">{{number}}</div>',
+        data:function(){
+            return {
+                number:0
+            }
+        },
+        methods:{
+            handleCounterClick:function(){
+                this.number++
+                this.$emit('increase')
+            }
+        }
+    })
+    vm = new Vue({
+        el:"#app",
+        data:{
+          total:0  
+        },
+        //ref直接提供了一个对子组件实例的引用
+        methods:{
+            handleClick:function(){
+                console.log(this.$refs.hello.innerHTML)
+            },
+            handleChange:function(){
+                let number1 = this.$refs.counter1.number
+                let number2 = this.$refs.counter2.number
+                this.total = number1+number2
+            }
+        }
+    })
+
+</script>
+</html>

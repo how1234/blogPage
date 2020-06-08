@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Vue的列表渲染</title>
+</head>
+<body>
+    <div id="app">
+        <!--template 可以当占位符，类似于react的fragment-->
+        <div v-for="(item,index) of list" :key="index">
+            {{item.text}} --- {{index}}
+        </div>
+
+
+        <div v-for="item of listObj">
+            {{item}}
+        </div>
+    </div>
+</body>
+
+<script>
+    var vm  = new Vue({
+        el:"#app",
+        //对于数组和对象，直接改下标无法触发监听
+        //1.改变引用
+        //2.使用Vue的set方法
+        //3.使用list的push,pop等方法
+        data:{
+            list:[
+                {text:"hello"},
+                {text:"heelo1"}
+            ],
+            listObj:{
+                name:'Dell',
+                age:28,
+                gender:"male"
+            }
+        }
+    })
+
+</script>
+</html>

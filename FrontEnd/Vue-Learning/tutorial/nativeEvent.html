@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绑定原生组件</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child @click="handleClick"></child>
+        <!--native 修饰符，修饰触发原生事件-->
+        <child-one @click.native="handleClick"></child-one>
+    </div>
+</body>
+
+<script>
+
+Vue.component('child',{
+    template:'<div @click="handleChildClick">123</div>',
+
+    methods:{
+        handleChildClick:function(){
+            alert('childClick')
+            this.$emit('click')
+        }
+    }
+})
+
+
+
+Vue.component('childOne',{
+    template:'<div>456</div>',
+
+    methods:{
+        handleChildClick:function(){
+            alert('childClick')
+            this.$emit('click')
+        }
+    }
+})
+
+
+var vm = new Vue({
+    el:"#app",
+    methods:{
+        handleClick:function(){
+            alert("click")
+        }
+    }
+})
+</script>
+</html>

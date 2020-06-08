@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件传值</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--加了冒号之后，传递的0是数字，因为冒号里面的被视为js字符串-->
+        <counter :count="1" @inc="handleIncrease"></counter>
+        <counter :count="2" @inc="handleIncrease"></counter>
+
+        <div>{{total}}</div>
+    </div>
+</body>
+
+<script>
+    //不要直接改变从父组件传进来的数据，我们称为单向数据流。
+    //因为如果是引用传递的话，会影响到根本值。
+    //解决方法，拷贝一个值，如果是对象的话需要做一个深拷贝
+    let counter = {
+        props:['count'],
+        template:'<div @click="handleClick">{{number}}</div>',
+        data:function(){
+            return {
+                number: this.count
+            }
+        },
+    //子组件向父组件传值，可以通过$emit触发事件
+        methods:{
+            handleClick:function(){
+                this.number = this.number+2
+                this.$emit('inc',2)
+            }
+        }
+    }
+
+    var vm = new Vue({
+        el:'#app',
+        components:{
+            counter:counter
+        },
+        data:{
+            total:3
+        },
+        methods:{
+            handleIncrease:function(step){
+                this.total+=2
+            }
+        }
+    })
+</script>
+</html>

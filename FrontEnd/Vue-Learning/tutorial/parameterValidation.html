@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件参数校验以及非Props特性</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <child content="1231"></child>
+    </div>
+</body>
+
+<script>
+    Vue.component('child',{
+        props:{
+            //required和default其实有点冲突，因为required true的话，default不管有没有都无所谓
+            content:{
+                type:String,
+                required:false,
+                default:"default value",
+                validator:function(value){
+                    return value.length > 5
+                }
+            }
+        },
+        template:"<div>{{content}}</div>"
+    })
+
+    var vm = new Vue({
+        el:"#app"
+    })
+</script>
+</html>
