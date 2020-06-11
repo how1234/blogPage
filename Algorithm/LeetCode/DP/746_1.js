@@ -5,8 +5,8 @@
  * 空间复杂度O(1)
  */
 var minCostClimbingStairs = function(cost) {
-    //dp[i]的值爬到i层所花费的最小代价
-    //结果只要返回dp[dp.length-1]，也就是到最顶层的最小代价就可以了
+    //f(n+1) = 爬到顶层层所花费的最小代价
+    
 
     let len = cost.length;
     
