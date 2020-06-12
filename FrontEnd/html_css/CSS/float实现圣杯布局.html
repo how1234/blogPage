@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>float 实现圣杯布局</title>
+    <style>
+
+
+        #header{
+            text-align: center;
+            background-color: blueviolet;
+        }
+        #center{
+            background-color:red;
+            width:100%;
+        }
+        #container{
+            padding-left:200px;
+            padding-right:100px;
+        }
+        #left{            
+            background-color: yellow;
+            width:200px;
+            margin-left:-200px;
+        }
+        #right{
+            background-color: green;
+            width:100px;
+            margin-right:-100px; /*没有宽度，所以往上平移了*/
+        }
+        #footer{
+            /* clear:both; */
+            text-align: center;
+            background-color:blue;
+        }
+
+        /* 手写clearfix */
+        .clearfix:after{
+            display: block;
+            content:'';
+            clear:both
+        }
+        #container .column{
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"> Header</div>
+
+    <div id="container" class="clearfix">
+        <div id="left" class="column">left</div>
+        <div id="center" class="column" >center</div>
+        <div id="right" class="column">right</div>
+    </div>
+
+    <div id="footer">
+        footer
+    </div>
+</body>
+</html>

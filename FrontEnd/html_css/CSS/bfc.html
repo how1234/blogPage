@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BFC应用</title>
+</head>
+<style>
+    .container{
+        background-color:#f1f1f1
+    }
+    .left{
+        float:left
+    }
+
+    #div1{
+        width:200px;
+        height:80px;
+        background-color: red
+    }
+    
+    .bfc{
+        overflow:hidden /*触发BFC*/
+    }
+
+</style>
+<body>
+    <!--如果不加bfc的话div1会脱离外部这个container-->
+    <div class="container bfc">
+        <div id="div1" class="left">一个block元素</div>
+        <p>一段文字</p>
+    </div>
+</body>
+</html>
