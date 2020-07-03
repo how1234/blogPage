@@ -1,22 +1,20 @@
-function throlltle(fn,interval){
-    let canRun = true
-
-    return function(){
-        if(!canRun) return
-        canRun = false
-        setTimeout(()=>{
-            fn.apply(this,arguments)
-            canRun = true
-        },interval)
-    }
+async function async1() {
+    console.log('async1 start');  //2
+    await async2(); 
+    console.log('async1 end'); //6
 }
-
-function debounce(fn,interval){
-    let timeout = null
-    return function(){
-        clearTimeout(timeout)
-        timeout = setTimeout( ()=>{
-            fn.apply(this,arguments)
-        },interval)
-    }
+async function async2() {
+    console.log('async2'); //3
 }
+console.log('script start'); //1
+setTimeout(function() {
+    console.log('setTimeout'); //8
+}, 0)
+async1(); 
+new Promise(function(resolve) {
+    console.log('promise1'); //4
+    resolve();
+}).then(function() {
+    console.log('promise2'); //7
+});
+console.log('script end'); //5

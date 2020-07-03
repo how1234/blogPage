@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input id = "input1" type="text"  />
+    </div>
+
+    <div id="div1" draggable="true" style="background-color:red;width:100px;height: 100px;">
+
+
+    </div>
+</body>
+
+<script>
+    var inputText = document.getElementById('input1')
+    // let timer = null
+    // input1.addEventListener('keyup',function(event){
+
+    //     if(timer){
+    //         clearTimeout(timer)
+    //     }
+    //     timer = setTimeout(function(){
+    //         console.log(input1.value)  
+            
+    //         timer = null
+    //     }
+    //     ,500)
+    // })
+
+    let div1 = document.getElementById('div1')
+
+    div1.addEventListener('drag',throttle(function(e){
+        console.log(e.offsetX + " " + e.offsetY)
+
+    }))
+    function throttle(fn,delay = 500){
+        let timer = null
+
+        return function(){
+            if(timer){
+                return
+            }
+
+            timer = setTimeout( ()=>{
+                
+                fn.apply(this,arguments)
+
+                timer = null
+            },delay)
+
+        }
+
+    }
+
+
+    input1.addEventListener('keyup', debounce( () => (
+        console.log(input1.value))))
+
+    function debounce(fn,delay = 500){
+        let timer = null
+        return function(){
+            if(timer){
+                clearTimeout(timer)
+            }
+            
+            timer = setTimeout( function(){
+                fn.apply(this,arguments)
+                timer = null   
+            },delay)
+        }
+
+    }
+
+</script>
+</html>

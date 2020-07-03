@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="model" type="text" />
+    <p id="output"></p>
+  </body>
+
+  <script>
+    var input = document.getElementById("model");
+    var output = document.getElementById("output");
+
+   
+
+    const newObj = new Proxy({},{
+        get:function(target,key,receiver){
+
+            return Reflect.get(target,key,receiver)
+        },
+        set:function(target,key,value,receiver){
+            console.log(target)
+            console.log(key)
+            console.log(value)
+            console.log(receiver)
+            if(key === 'text'){
+                input.value = value
+                output.innerText = value
+            }
+            
+            return Reflect.set(target,key,value,receiver)
+
+        }
+    }
+    )
+
+    input.addEventListener('keyup',function(e){
+        newObj.text = e.target.value
+    })
+  </script>
+</html>

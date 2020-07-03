@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+
+.parent1{
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parent{
+    position: relative;
+    height: 500px;
+}
+.children{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+
+</style>
+<body>  
+    <div class="parent">
+        <div class="children">123</div>
+    </div>
+
+    <div class="parent1">
+        <div class="children"> children1</div>
+    </div>
+</body>
+
+</html>
