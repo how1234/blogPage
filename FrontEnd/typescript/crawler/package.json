@@ -1,0 +1,28 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently npm:dev:*",
+    "dev:build": "tsc -w",
+    "dev:start": "nodemon node ./build/crawler.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "/course.json"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.18",
+    "@types/superagent": "^4.1.8",
+    "concurrently": "^5.2.0",
+    "superagent": "^5.3.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3"
+  }
+}
