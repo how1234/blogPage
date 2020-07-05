@@ -1,7 +1,6 @@
 {
   "name": "crawler",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently npm:dev:*",
@@ -24,5 +23,6 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3"
-  }
+  },
+  "description": ""
 }
