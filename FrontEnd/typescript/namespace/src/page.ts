@@ -1,4 +1,6 @@
-/// <reference path='./components></reference>
+/// <reference path='./components.ts' />
+
+
 namespace Home{
   
   

@@ -53,4 +53,4 @@ function addSecond(first : NumberObj | object, second: object| NumberObj){
   }
   return 0
 }
-
+ 

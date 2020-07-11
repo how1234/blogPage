@@ -9,13 +9,16 @@ function map<T>(params:T[]){
   return params
 }
 
+function anoterJoin<T>(first:T,second:T) : T{
+  return first
+}
 
 function joinSecond<T,P>(first : T,second : P){
   return `${first}${second}`
 }
 
 
-console.log(joinSecond<number,string>(1,'2'))
+console.log(joinSecond<number,string>(1,'2 '))
 
 //针对一些不确定的类型，我们使用范型
 console.log(join<number>(1,1))

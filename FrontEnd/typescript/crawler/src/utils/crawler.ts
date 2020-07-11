@@ -2,7 +2,7 @@ import superagent from "superagent";
 import cheerio from "cheerio";
 import fs from 'fs'
 import path from 'path'
-import DellAnalyzer from './DellAnalyzer'
+import DellAnalyzer from './analyzer'
 
 export interface Analyzer{
   analyze:(html:string,filePath:string) => string
@@ -11,7 +11,7 @@ export interface Analyzer{
 class Crawler {
  
 
-  private filePath = path.resolve(__dirname,'../course.json')
+  private filePath = path.resolve(__dirname,'../../course.json')
 
   constructor(private analyer:Analyzer,private url:string,private secret:string) {
     this.url = `${this.url}?secret=${this.secret}`;
@@ -35,13 +35,11 @@ class Crawler {
     
   }
 }
+export default Crawler
 
-let secret = "x3b174jsx";
 
-let url = `http://www.dell-lee.com/typescript/demo.html`;
 
-const analyzer =  DellAnalyzer.getInstance();
-let crawler = new Crawler(analyzer,url,secret);
 
-let a = 3
+
+
 
