@@ -1,9 +1,10 @@
 import express, {Request, Response, NextFunction} from 'express'
+import './controller/LoginController'
+import './controller/CrawlerController'
 import router from './router'
 import bodyParser from 'body-parser'
 import cookieSession from 'cookie-session'
-import fs from 'fs'
-import path from 'path'
+
 
 
 
