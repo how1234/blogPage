@@ -24,19 +24,24 @@ var hasCycle = function(head) {
     return false
 };
 
-var hasCycle1 = function(head) {
-    if(!head || !head.next){
-        return false
-    }
-    let slow = head, fast = head.next
 
-    while(slow && fast && fast.next){
-        if(slow === fast){
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ * 时间复杂度O(N)
+ * 空间复杂度O(1)
+ */
+var hasCycle = function(head) {
+    let fast = head
+    let slow = head
+    //如果没有环的话，fast.next会为null，跳出循环
+    while(fast && slow && fast.next){
+        fast = fast.next.next
+        slow = slow.next
+        if(fast === slow){
             return true
         }
-        slow = slow.next
-        fast = fast.next.next   
     }
-    return false
     
+    return false
 };
