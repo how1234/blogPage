@@ -22,6 +22,7 @@ var deleteDuplicates = function(head) {
       if(cur.val === cur.next.val){
           cur.next = cur.next.next
       }else{
+        
           //针对[1,1,1]这样的输出
           cur = cur.next
       }
