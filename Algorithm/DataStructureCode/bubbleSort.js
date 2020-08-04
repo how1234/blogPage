@@ -1,7 +1,7 @@
 let bubbleSort = (inputArr) =>{
     let len = inputArr.length;
 
-    for (let i = 0;i<len;i++){
+    for (let i = 0;i<len-1;i++){
         let flag = true
         for(let j = 0;j<len-1-i;j++){
             if(inputArr[j] > inputArr[j+1]){
