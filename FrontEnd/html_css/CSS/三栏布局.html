@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <style>
+      .box{
+          position: relative;
+      }
+      .left{
+        position:absolute;
+        top:0;
+        left:0;
+        width:200px;
+        height: 200px;
+        background-color: blue;
+      }
+      .middle{
+          margin-left: 200px;
+          margin-right: 200px;
+          height: 200px;
+          background-color: red;
+      }
+      .right{
+        position:absolute;
+        top:0;
+        right:0;
+        width:200px;
+        height: 200px;
+        background-color: green;
+      }
+  </style>
+  <body>
+    <div class="box">
+      <div class="left">左边</div>
+      <div class="middle">中间</div>
+      <div class="right">右边</div>
+    </div>
+  </body>
+</html>
