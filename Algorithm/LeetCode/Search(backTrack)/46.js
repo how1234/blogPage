@@ -18,7 +18,6 @@ var permute = function(nums) {
             if(visited[i]){
                 continue
             }
-
             visited[i] = 1
             path.push(nums[i])
             helper()
