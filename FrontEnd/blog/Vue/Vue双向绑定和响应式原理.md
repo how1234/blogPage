@@ -1,8 +1,8 @@
-#Vue 响应式实现
+# Vue 响应式实现
 
 为了实现数据驱动视图这个目标，Vue需要监听数据，也就是说：组件data的数据一旦变化，就会立刻触发视图的更新。也就是MVVM的作用的根本思路。
 
-##Vue 2.x 响应式
+## Vue 2.x 响应式
 
 Vue 2.x响应式的实现所涉及到的及到一个核心API是[Object.defineProperty](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)。
 
